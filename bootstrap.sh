@@ -8,3 +8,5 @@ ln -s ~/devenviro/bash/bashrc ~/.bashrc
 ln -s ~/devenviro/bash/bash_profile ~/.bash_profile
 ln -s ~/devenviro/git/gitconfig ~/.gitconfig
 ln -s ~/devenviro/ssh/config ~/.ssh/config
+source ~/.bashrc
+source ~/.bash_profile
