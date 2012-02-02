@@ -10,5 +10,6 @@ ln -s ~/devenviro/git/gitconfig ~/.gitconfig
 mkdir ~/.ssh
 ln -s ~/devenviro/ssh/config ~/.ssh/config
 bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+mkdir ~/devenviro/vim/backup
 source ~/.bashrc
 source ~/.bash_profile
