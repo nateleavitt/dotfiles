@@ -22,7 +22,7 @@ done
  ln -s $HOME/.devenviro/bash/bash_profile $HOME/.bash_profile
  ln -s $HOME/.devenviro/git/gitconfig $HOME/.gitconfig
 
-# echo "configuring ssh environment"
+ echo "configuring ssh environment"
  mkdir $HOME/.ssh
  ln -s $HOME/.devenviro/ssh/config $HOME/.ssh/config
  ln -s $HOME/.devenviro/janus $HOME/.janus
@@ -49,3 +49,4 @@ ln -s $HOME/.devenviro/janus/gvimrc.before $HOME/.gvimrc.before
 ln -s $HOME/.devenviro/janus/gvimrc.after $HOME/.gvimrc.after
 ln -s $HOME/.devenviro/janus/vimrc.before $HOME/.vimrc.before
 ln -s $HOME/.devenviro/janus/vimrc.after $HOME/.vimrc.after
+ln -s $HOME/.devenviro/bin $HOME/bin
