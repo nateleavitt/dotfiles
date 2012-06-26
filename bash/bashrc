@@ -151,3 +151,5 @@ export SVN_EDITOR='${EDITOR}'
 #   ${COLOR_GREEN}sv${COLOR_NC}get${COLOR_GREEN}info${COLOR_NC}   ${COLOR_GRAY}Example: svgetinfo your_file
 #   ${COLOR_GREEN}sv${COLOR_NC}blame     ${COLOR_GRAY}Example: svblame your_file
 #'"
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
