@@ -130,10 +130,13 @@ export EDITOR='mate -w'  # OS-X SPECIFIC - TextMate, w is to wait for TextMate w
 #export EDITOR='vim'  #Command line
 
 
+# Git
+alias gitlog="git log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative"
 
-# Subversion & Diff ------------------------------------------------
-export SV_USER='nate'  # Change this to your username that you normally use on subversion (only if it is different from your logged in name)
-export SVN_EDITOR='${EDITOR}'
+
+ #Subversion & Diff ------------------------------------------------
+#export SV_USER='nate'   Change this to your username that you normally use on subversion (only if it is different from your logged in name)
+#export SVN_EDITOR='${EDITOR}'
 
 #alias svshowcommands="echo -e '${COLOR_BROWN}Available commands: 
 #   ${COLOR_GREEN}sv
