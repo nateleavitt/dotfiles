@@ -25,7 +25,7 @@ done
  echo "configuring ssh environment"
  mkdir $HOME/.ssh
  ln -s $HOME/.devenviro/ssh/config $HOME/.ssh/config
- ln -s $HOME/.devenviro/janus $HOME/.janus
+# ln -s $HOME/.devenviro/janus $HOME/.janus
 
  echo "installing rvm"
  bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
@@ -35,8 +35,8 @@ done
  source $HOME/.bash_profile
 
 # Clone Janus into .vim
-git clone https://github.com/carlhuda/janus.git $HOME/.vim \
-  || die "Could not clone the repository to ${HOME}/.vim"
+#git clone https://github.com/carlhuda/janus.git $HOME/.vim \
+#  || die "Could not clone the repository to ${HOME}/.vim"
 
 # Run rake inside .vim
 cd $HOME/.vim || die "Could not go into the ${HOME}/.vim"
@@ -45,8 +45,8 @@ rake || die "Rake failed."
 # Remove and replace .vimrc.before after files
 echo "replacing default gvimrc and vimrc files installed by janus"
 rm $HOME/.gvimrc.before $HOME/.gvimrc.after $HOME/.vimrc.before $HOME/.vimrc.after
-ln -s $HOME/.devenviro/janus/gvimrc.before $HOME/.gvimrc.before
-ln -s $HOME/.devenviro/janus/gvimrc.after $HOME/.gvimrc.after
-ln -s $HOME/.devenviro/janus/vimrc.before $HOME/.vimrc.before
-ln -s $HOME/.devenviro/janus/vimrc.after $HOME/.vimrc.after
+ln -s $HOME/.devenviro/vim/gvimrc.before $HOME/.gvimrc.before
+ln -s $HOME/.devenviro/vim/gvimrc.after $HOME/.gvimrc.after
+ln -s $HOME/.devenviro/vim/vimrc.before $HOME/.vimrc.before
+ln -s $HOME/.devenviro/vim/vimrc.after $HOME/.vimrc.after
 ln -s $HOME/.devenviro/bin $HOME/bin
