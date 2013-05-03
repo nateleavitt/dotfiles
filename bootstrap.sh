@@ -39,12 +39,13 @@ done
 #  || die "Could not clone the repository to ${HOME}/.vim"
 
 # Run rake inside .vim
-cd $HOME/.vim || die "Could not go into the ${HOME}/.vim"
-rake || die "Rake failed."
+#cd $HOME/.vim || die "Could not go into the ${HOME}/.vim"
+#rake || die "Rake failed."
 
 # Remove and replace .vimrc.before after files
-echo "replacing default gvimrc and vimrc files installed by janus"
+echo "replacing default gvimrc and vimrc files if installed"
 rm $HOME/.gvimrc.before $HOME/.gvimrc.after $HOME/.vimrc.before $HOME/.vimrc.after
+ln -s $HOME/.devenviro/vim $HOME/.vim
 ln -s $HOME/.devenviro/vim/gvimrc.before $HOME/.gvimrc.before
 ln -s $HOME/.devenviro/vim/gvimrc.after $HOME/.gvimrc.after
 ln -s $HOME/.devenviro/vim/vimrc.before $HOME/.vimrc.before
