@@ -6,8 +6,8 @@ export TERM=xterm-color
 
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 
-export CLICOLOR=1 
-export LSCOLORS='Exfxcxdxbxegedabagacad'
+export CLICOLOR=1
+export LSCOLORS=Exfxcxdxbxegedabagacad
 
 alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
 

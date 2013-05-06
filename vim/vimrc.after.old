@@ -1,4 +1,3 @@
-set background=dark
-colorscheme solarized
+color ir_black
 " remove all trailing whitespace
 nnoremap <silent> <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>

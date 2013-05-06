@@ -1,0 +1,3 @@
+call janus#disable_plugin('nerdtree')
+let mapleader=' '
+call janus#disable_plugin('buffergator')

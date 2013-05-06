@@ -49,11 +49,10 @@ endif
 set guioptions-=T
 
 " Default gui color scheme
-set background=dark
-colorscheme ir_black
+color ir_black
 
 " Set gui font
-set guifont=Menlo:h14
+set guifont=Menlo\ Bold:h14
 
 " ConqueTerm wrapper
 function StartTerm()
