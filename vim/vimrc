@@ -1,4 +1,5 @@
 execute pathogen#infect()
+
 set nocompatible
 let mapleader=" "
 
@@ -55,7 +56,6 @@ function s:setupWrapping()
   set wm=2
   set textwidth=72
 endfunction
-
 function s:setupMarkup()
   call s:setupWrapping()
   map <buffer> <Leader>p :Mm <CR>

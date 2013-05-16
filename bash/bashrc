@@ -6,8 +6,8 @@ export TERM=xterm-color
 
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 
-export CLICOLOR=1
-export LSCOLORS=Exfxcxdxbxegedabagacad
+#export CLICOLOR=1
+#export LSCOLORS=Exfxcxdxbxegedabagacad
 
 alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
 
@@ -125,7 +125,7 @@ alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' 
 
 
 # Editors ----------------------------------------------------------
-export EDITOR='mate -w'  # OS-X SPECIFIC - TextMate, w is to wait for TextMate window to close
+# export EDITOR='mate -w'  # OS-X SPECIFIC - TextMate, w is to wait for TextMate window to close
 #export EDITOR='gedit'  #Linux/gnome
 #export EDITOR='vim'  #Command line
 
