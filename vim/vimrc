@@ -3,6 +3,8 @@ execute pathogen#infect()
 set nocompatible
 let mapleader=" "
 
+set scrolloff=10
+
 set number
 set ruler
 syntax on
@@ -98,6 +100,7 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 " Bubble single lines
 nmap <C-Up> [e
 nmap <C-Down> ]e
+
 " Bubble multiple lines
 vmap <C-Up> [egv
 vmap <C-Down> ]egv

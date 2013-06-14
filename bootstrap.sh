@@ -21,6 +21,7 @@ done
  ln -s $HOME/.devenviro/bash/bashrc $HOME/.bashrc
  ln -s $HOME/.devenviro/bash/bash_profile $HOME/.bash_profile
  ln -s $HOME/.devenviro/git/gitconfig $HOME/.gitconfig
+ ln -s $HOME/.devenviro/bash/git-completion.bash $HOME/.git-completion.bash
 
  echo "configuring ssh environment"
  mkdir $HOME/.ssh
