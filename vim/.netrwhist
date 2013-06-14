@@ -1,10 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/Volumes/Media/Users/nate/Projects/customerhub/lib'
-let g:netrw_dirhist_2='/Volumes/Media/Users/nate/Projects/customerhub/lib/tasks'
-let g:netrw_dirhist_3='/Volumes/Media/Users/nate/Projects/customerhub/lib/tasks/customerhub'
-let g:netrw_dirhist_4='/Volumes/Media/Users/nate/Projects/customerhub'
-let g:netrw_dirhist_5='/usr/local/Cellar/nginx/1.4.0/sites-enabled'
-let g:netrw_dirhist_6='/usr/local/etc/nginx'
-let g:netrw_dirhist_7='/Volumes/Media/Users/nate/Projects/customerhub'
-let g:netrw_dirhist_8='/Volumes/Media/Users/nate/Projects/customerhub/config'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/Volumes/Media/Users/nate/Projects/customerhub'
