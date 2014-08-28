@@ -9,7 +9,6 @@ export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 #export CLICOLOR=1
 #export LSCOLORS=Exfxcxdxbxegedabagacad
 
-alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
 
 # ls colors, see: http://www.linux-sxs.org/housekeeping/lscolors.html
 export LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rb=90'  #LS_COLORS is not supported by the default ls command in OS-X
@@ -100,16 +99,11 @@ p(){
 
 
 # Other aliases ----------------------------------------------------
+alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
 alias ll='ls -hl'
-alias la='ls -a'
+alias la='ls -la'
 alias lla='ls -lah'
 alias cpr='cp -r'
-
-# Dev aliases ---------------------------------------------------
-alias rss='ruby script/server'
-alias rsg='ruby script/generate'
-alias rsc='ruby script/console'
-alias rsp='ruby script/plugin'
 
 # Git aliases
 alias gs='git status'
