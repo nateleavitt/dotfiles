@@ -7,6 +7,9 @@
   ci = commit
   st = status
   br = branch
-  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  hist =log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative 
   type = cat-file -t
   dump = cat-file -p
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f

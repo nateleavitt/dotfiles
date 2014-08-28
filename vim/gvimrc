@@ -50,7 +50,7 @@ set guioptions-=T
 
 " Default gui color scheme
 set background=dark
-colorscheme solarized
+colorscheme railscasts
 
 " Set gui font
 set guifont=Menlo:h14

@@ -1,10 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/nathan.leavitt/Projects/customerhub'
-let g:netrw_dirhist_2='/Users/nathan.leavitt/Projects/infusionsoft'
-let g:netrw_dirhist_3='/Users/nathan.leavitt/Projects/infusionsoft/lib'
-let g:netrw_dirhist_4='/Users/nathan.leavitt/Projects/infusionsoft/lib/infusionsoft'
-let g:netrw_dirhist_5='/Users/nathan.leavitt/Projects/infusionsoft/lib/infusionsoft/client'
-let g:netrw_dirhist_6='/Users/nathan.leavitt/Projects/customerhub'
-let g:netrw_dirhist_7='/Users/nathan.leavitt/Projects/customerhub/config'
-let g:netrw_dirhist_8='/Users/nathan.leavitt/Projects/customerhub/lib'
+let g:netrw_dirhist_2='/Users/nathan.leavitt/Projects/pullegator'
+let g:netrw_dirhist_3='/Users/nathan.leavitt/Projects/pullegator/endpoints'
+let g:netrw_dirhist_4='/Users/nathan.leavitt/Projects/pullegator'
+let g:netrw_dirhist_5='/Users/nathan.leavitt/.devenviro/vim/bundle'
+let g:netrw_dirhist_6='/Users/nathan.leavitt/Projects/books/golang/chapter3'
+let g:netrw_dirhist_7='/Users/nathan.leavitt'

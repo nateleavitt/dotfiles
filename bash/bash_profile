@@ -7,6 +7,8 @@ fi
 # Load in .bashrc -------------------------------------------------
 source ~/.bashrc
 source ~/.git-completion.bash
+source ~/.hub.bash-completion.sh
+eval "$(hub alias -s)"
 
 
 # Hello Messsage --------------------------------------------------
@@ -18,10 +20,19 @@ echo -ne "Server time is: "; date
 # Path ------------------------------------------------------------
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
 #export AWS_RDS_HOME=~/Projects/amazon/RDS/
-export PATH=/usr/local/mysql/bin:/usr/local/bin:/usr/local/sbin:$PATH  # OS-X Specific, with MySQL installed
+export GOPATH=$HOME/go
+export PATH=/usr/local/mysql/bin:/usr/local/bin:/usr/local/sbin:$GOPATH:$PATH  # OS-X Specific, with MySQL installed
 
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export JAVA6_HOME=`/usr/libexec/java_home -v 1.6`
+export JAVA7_HOME=`/usr/libexec/java_home -v 1.7`
+alias j6='export JAVA_HOME=$JAVA6_HOME'
+alias j7='export JAVA_HOME=$JAVA7_HOME'
+
+export MAVEN_OPTS='-Xmx2g -XX:MaxPermSize=512m -XX:CompileCommand=exclude,com/infusion/databridge/MemoryRst,loadMeta'
 #export PATH=/opt/local/bin:/opt/local/sbin:$PATH  # OS-X Specific, with MacPorts installed
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
 
 # Notes: ----------------------------------------------------------
 # When you start an interactive shell (log in, open terminal or iTerm in OS X, 
