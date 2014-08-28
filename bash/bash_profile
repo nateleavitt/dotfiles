@@ -7,8 +7,8 @@ fi
 # Load in .bashrc -------------------------------------------------
 source ~/.bashrc
 source ~/.git-completion.bash
-source ~/.hub.bash-completion.sh
-eval "$(hub alias -s)"
+# source ~/.hub.bash-completion.sh
+# eval "$(hub alias -s)"
 
 
 # Hello Messsage --------------------------------------------------
