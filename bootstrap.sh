@@ -28,8 +28,10 @@ done
  ln -s $HOME/.devenviro/ssh/config $HOME/.ssh/config
 # ln -s $HOME/.devenviro/janus $HOME/.janus
 
- echo "installing rvm"
- bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+ echo "installing rvm stable"
+ # bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+ bash -s stable < <(curl -sSL https://get.rvm.io)
+ 
 
  echo "source bash files - you may need to do it manually"
  source $HOME/.bashrc
@@ -52,3 +54,6 @@ ln -s $HOME/.devenviro/vim/gvimrc.after $HOME/.gvimrc.after
 ln -s $HOME/.devenviro/vim/vimrc.before $HOME/.vimrc.before
 ln -s $HOME/.devenviro/vim/vimrc.after $HOME/.vimrc.after
 ln -s $HOME/.devenviro/bin $HOME/bin
+
+echo "installing Homebrew"
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
