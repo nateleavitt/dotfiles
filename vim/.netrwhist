@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
+<<<<<<< HEAD
 let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/nathan.leavitt/Projects/customerhub'
 let g:netrw_dirhist_2='/Users/nathan.leavitt/Projects/pullegator'
@@ -7,3 +8,7 @@ let g:netrw_dirhist_4='/Users/nathan.leavitt/Projects/pullegator'
 let g:netrw_dirhist_5='/Users/nathan.leavitt/.devenviro/vim/bundle'
 let g:netrw_dirhist_6='/Users/nathan.leavitt/Projects/books/golang/chapter3'
 let g:netrw_dirhist_7='/Users/nathan.leavitt'
+=======
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/Volumes/Media/Users/nate/Projects/customerhub'
+>>>>>>> e6532c87530339efd8cd1b940556914b5a9fc95f
