@@ -28,14 +28,15 @@ done
  ln -s $HOME/.dotfiles/ssh/config $HOME/.ssh/config
 # ln -s $HOME/.dotfiles/janus $HOME/.janus
 
-echo "source bash files - you may need to do it manually"
-source $HOME/.bashrc
-source $HOME/.bash_profile
-
  echo "installing rvm stable"
  # bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
  bash -s stable < <(curl -sSL https://get.rvm.io)
  
+ 
+echo "source bash files - you may need to do it manually"
+source $HOME/.bashrc
+source $HOME/.bash_profile
+
 # Clone Janus into .vim
 #git clone https://github.com/carlhuda/janus.git $HOME/.vim \
 #  || die "Could not clone the repository to ${HOME}/.vim"
@@ -57,6 +58,4 @@ ln -s $HOME/.dotfiles/bin $HOME/bin
 echo "installing Homebrew"
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
-echo "source bash files - you may need to do it manually"
-source $HOME/.bashrc
-source $HOME/.bash_profile
+
