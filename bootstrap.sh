@@ -2,15 +2,15 @@
 
 function bootstrap() {
 
-case "$1" in
-  no-rvm) rvm = "false" ;;
-  no-brew) brew = "false" ;;
-esac
+  case "$1" in
+    no-rvm) rvm = "false" ;;
+    no-brew) brew = "false" ;;
+  esac
 
-case "$2" in
-  no-rvm) rvm = "false" ;;
-  no-brew) brew = "false" ;;
-esac
+  case "$2" in
+    no-rvm) rvm = "false" ;;
+    no-brew) brew = "false" ;;
+  esac
 
 
   function die() {
@@ -50,6 +50,7 @@ esac
 
   echo "configuring ssh environment"
   mkdir $HOME/.ssh
+  cp $HOME/.dotfiles/ssh/config.example $HOME/.dotfiles/ssh/config
   ln -s $HOME/.dotfiles/ssh/config $HOME/.ssh/config
   # ln -s $HOME/.dotfiles/janus $HOME/.janus
 
@@ -57,7 +58,6 @@ esac
   then
     install_rvm
   fi
-
 
   echo "source bash files - you may need to do it manually"
   source $HOME/.bashrc
