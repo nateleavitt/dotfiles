@@ -25,6 +25,7 @@ done
 
  echo "configuring ssh environment"
  mkdir $HOME/.ssh
+ cp $HOME/.dotfiles/ssh/config.example $HOME/.dotfiles/ssh/config
  ln -s $HOME/.dotfiles/ssh/config $HOME/.ssh/config
 # ln -s $HOME/.dotfiles/janus $HOME/.janus
 
@@ -36,14 +37,6 @@ done
 echo "source bash files - you may need to do it manually"
 source $HOME/.bashrc
 source $HOME/.bash_profile
-
-# Clone Janus into .vim
-#git clone https://github.com/carlhuda/janus.git $HOME/.vim \
-#  || die "Could not clone the repository to ${HOME}/.vim"
-
-# Run rake inside .vim
-#cd $HOME/.vim || die "Could not go into the ${HOME}/.vim"
-#rake || die "Rake failed."
 
 # Remove and replace .vimrc.before after files
 echo "replacing default gvimrc and vimrc files if installed"
