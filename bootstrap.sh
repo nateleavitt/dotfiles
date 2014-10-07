@@ -1,4 +1,17 @@
 #! /bin/bash
+PARSED_OPTIONS=$( getopt -o "p:d:a:r:" -- "$@" )
+eval set -- "$PARSED_OPTIONS"
+
+rvm = true;
+brew = true;
+
+while true; do
+  case $1 in
+    rvm) rvm=$2; shift 2 ;;
+    brew) brew=$2; shift 2 ;;
+    --) shift; break ;;
+  esac
+done
 
 case "$1" in
   no-rvm) rvm = "false" ;;
