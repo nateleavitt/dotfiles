@@ -64,10 +64,7 @@ mkdir $HOME/.ssh
 cp $HOME/.dotfiles/ssh/config.example $HOME/.dotfiles/ssh/config
 ln -s $HOME/.dotfiles/ssh/config $HOME/.ssh/config
 
-if [ $rvm ]
-then
-  install_rvm
-fi
+if $rvm ; then install_rvm ; fi
 
 echo "source bash files - you may need to do it manually"
 source $HOME/.bashrc
@@ -90,9 +87,6 @@ ln -s $HOME/.dotfiles/vim/vimrc.before $HOME/.vimrc.before
 ln -s $HOME/.dotfiles/vim/vimrc.after $HOME/.vimrc.after
 ln -s $HOME/.dotfiles/bin $HOME/bin
 
-if [ $brew ]
-then
-  install_homebrew
-fi
+if $brew ; then install_homebrew ; fi
 
 echo "Finished!"
