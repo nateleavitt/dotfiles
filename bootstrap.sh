@@ -1,26 +1,26 @@
 #! /bin/bash
-PARSED_OPTIONS=$( getopt -o "p:d:a:r:" -- "$@" )
-eval set -- "$PARSED_OPTIONS"
+# PARSED_OPTIONS=$( getopt -o "r:b:" -- "$@" )
+# eval set -- "$PARSED_OPTIONS"
 
-rvm = true;
-brew = true;
+rvm=true;
+brew=true;
 
-while true; do
-  case $1 in
-    rvm) rvm=$2; shift 2 ;;
-    brew) brew=$2; shift 2 ;;
-    --) shift; break ;;
-  esac
-done
+# while true; do
+#   case $1 in
+#     r) rvm=$2; shift 2 ;;
+#     b) brew=$2; shift 2 ;;
+#     --) shift; break ;;
+#   esac
+# done
 
 case "$1" in
-  no-rvm) rvm = "false" ;;
-  no-brew) brew = "false" ;;
+  no-rvm) rvm=false ;;
+  no-brew) brew=false ;;
 esac
 
 case "$2" in
-  no-rvm) rvm = "false" ;;
-  no-brew) brew = "false" ;;
+  no-rvm) rvm=false ;;
+  no-brew) brew=false ;;
 esac
 
 
@@ -64,7 +64,7 @@ mkdir $HOME/.ssh
 cp $HOME/.dotfiles/ssh/config.example $HOME/.dotfiles/ssh/config
 ln -s $HOME/.dotfiles/ssh/config $HOME/.ssh/config
 
-if [ "$rvm" != "false" ]
+if [ $rvm ]
 then
   install_rvm
 fi
@@ -90,7 +90,7 @@ ln -s $HOME/.dotfiles/vim/vimrc.before $HOME/.vimrc.before
 ln -s $HOME/.dotfiles/vim/vimrc.after $HOME/.vimrc.after
 ln -s $HOME/.dotfiles/bin $HOME/bin
 
-if [ "$brew" != "false" ]
+if [ $brew ]
 then
   install_homebrew
 fi
