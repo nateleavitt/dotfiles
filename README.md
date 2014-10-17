@@ -9,10 +9,6 @@ you would like to install without those.
   * First, clone the repo
   * Then cd into the `dotfiles` folder and run `bootstrap`
 
-then run the same command with the following options
-  * Don't install Homebrew `-b false`
-  * Don't install RVM `-r false`
-
 ## Examples ##
 Installation without Homebrew
 ```bash
