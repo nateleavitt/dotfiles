@@ -7,8 +7,12 @@ and Mvim by default. See options for a list of all options you would
 like to install without those.
 
 ## Installation ##
-  * First, clone the repo
-  * Then cd into the `dotfiles` folder and run `bootstrap`
+By default everything is installed in your HOME folder.
+```bash
+git clone git@github.com:nateleavitt/dotfiles.git
+cd dotfiles
+bootstrap # look at options below
+```
 
 ## Options ##
   * `-b <boolean>` install Homebrew (default true)

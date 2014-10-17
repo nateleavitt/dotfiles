@@ -55,7 +55,7 @@ echo 'moving dotfiles to hidden'
 mv $HOME/dotfiles ~/.dotfiles
 
 # Add <strong>.old</strong> to any existing Vim file in the home directory
-for i in $HOM$/bin $HOME/.vim $HOME/.vimrc $HOME/.vimrc.before $HOME/.vimrc.after \
+for i in $HOME/bin $HOME/.vim $HOME/.vimrc $HOME/.vimrc.before $HOME/.vimrc.after \
   $HOME/.gvimrc $HOME/.gvimrc.before $HOME/.gvimrc.after $HOME/.bashrc \
   $HOME/.bash_profile; do
   if [[ ( -e $i ) || ( -h $i ) ]]; then
