@@ -27,10 +27,6 @@ if [ -z "${rvm}" ] || [ -z "${brew}" ] || [ -z "${mvim}" ]; then
   usage
 fi
 
-# echo "rvm = ${rvm}"
-# echo "brew = ${brew}"
-
-
 function die() {
     echo "${@}"
     exit 1
