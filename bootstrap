@@ -1,16 +1,20 @@
 #! /bin/bash
-usage() { echo "Usage: $0 [-r <boolean>] [-b <boolean>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-r <boolean>] [-b <boolean>] [-m <boolean>]" 1>&2; exit 1; }
 
 brew=true;
 rvm=true;
+mvim=true;
 
-while getopts ":r:b:" o; do
+while getopts ":r:b:m:" o; do
   case "${o}" in
     r)
       rvm=${OPTARG}
       ;;
     b)
       brew=${OPTARG}
+      ;;
+    b)
+      mvim=${OPTARG}
       ;;
     *)
       usage
@@ -19,7 +23,7 @@ while getopts ":r:b:" o; do
 done
 shift $((OPTIND-1))
 
-if [ -z "${rvm}" ] || [ -z "${brew}" ]; then
+if [ -z "${rvm}" ] || [ -z "${brew}" ] || [ -z "${mvim}" ]; then
   usage
 fi
 
@@ -40,6 +44,14 @@ function install_rvm() {
 function install_homebrew() {
   echo "installing Homebrew"
   ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+}
+
+function install_mvim() {
+  echo "installing mvim"
+  brew install mvim
+
+  echo "downloading and configuring vim plugins"
+  vim +PluginInstall +qall
 }
 
 # move dotfiles
@@ -91,6 +103,8 @@ ln -s $HOME/.dotfiles/vim/vimrc.before $HOME/.vimrc.before
 ln -s $HOME/.dotfiles/vim/vimrc.after $HOME/.vimrc.after
 ln -s $HOME/.dotfiles/bin $HOME
 
+
 if $brew ; then install_homebrew ; fi
+if $mvim ; then install_mvim ; fi
 
 echo "Finished!"

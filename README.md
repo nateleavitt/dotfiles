@@ -1,13 +1,19 @@
 Here is a list of my dotfiles and how I bootstrap a new machine 
 for my local dev environment setup
 
-**Please note** - By default this will install my dotfiles which includes vim settings and
-plugins. It also installs Homebrew and RVM by default. See examples if
-you would like to install without those.
+**Please note** - By default this will install my dotfiles which 
+includes vim settings and plugins. It also installs Homebrew, RVM, 
+and Mvim by default. See options for a list of all options you would
+like to install without those.
 
 ## Installation ##
   * First, clone the repo
   * Then cd into the `dotfiles` folder and run `bootstrap`
+
+## Options ##
+  * `-b <boolean>` install Homebrew (default true)
+  * `-r <boolean>` install RVM (default true)
+  * `-m <boolean>` install Mvim (default true)
 
 ## Examples ##
 Installation without Homebrew
@@ -20,9 +26,7 @@ without RVM
 bootstrap -r false
 ```
 
-without both
+without both Homebrew and RVM
 ```bash
 bootstrap -b false -r false
 ```
-
-## More Info ##
