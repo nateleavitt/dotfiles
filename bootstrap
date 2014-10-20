@@ -13,7 +13,7 @@ while getopts ":r:b:m:" o; do
     b)
       brew=${OPTARG}
       ;;
-    b)
+    m)
       mvim=${OPTARG}
       ;;
     *)
