@@ -34,12 +34,14 @@ function die() {
 
 function install_rvm() {
   echo "installing rvm stable"
-  bash -s stable < <(curl -sSL https://get.rvm.io)
+  bash -s stable < <(curl -sSL https://get.rvm.io) \
+    || die "Had problems installing RVM"
 }
 
 function install_homebrew() {
   echo "installing Homebrew"
-  ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+  ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" \
+    || die "Had problems installing Homebrew"
 }
 
 function install_mvim() {
@@ -93,6 +95,8 @@ source $HOME/.bash_profile
 # Remove and replace .vimrc.before after files
 echo "linking default gvimrc and vimrc files if installed"
 ln -s $HOME/.dotfiles/vim $HOME/.vim
+ln -s $HOME/.dotfiles/vim/vimrc $HOME/.vimrc
+ln -s $HOME/.dotfiles/vim/gvimrc $HOME/.gvimrc
 ln -s $HOME/.dotfiles/vim/gvimrc.before $HOME/.gvimrc.before
 ln -s $HOME/.dotfiles/vim/gvimrc.after $HOME/.gvimrc.after
 ln -s $HOME/.dotfiles/vim/vimrc.before $HOME/.vimrc.before
