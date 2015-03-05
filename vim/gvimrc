@@ -47,6 +47,8 @@ endif
 
 " Start without the toolbar
 set guioptions-=T
+set guioptions-=r
+set go-=L
 
 " Default gui color scheme
 set background=dark
