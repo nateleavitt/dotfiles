@@ -6,4 +6,5 @@ ssh/id_rsa
 ssh/id_rsa.pub
 ssh/pems/
 ssh/known_hosts
-
+fish/fish_history
+fish/fishd.*
