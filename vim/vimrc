@@ -38,6 +38,7 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'dag/vim-fish'
+Plugin 'markcornick/vim-terraform'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -192,7 +193,7 @@ set modelines=10
 " Default color scheme
 set t_Co=256
 set background=dark
-colorscheme railscasts
+colorscheme molokai
 
 
 "Directories for swp files
