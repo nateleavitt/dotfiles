@@ -1,5 +1,5 @@
 #! /bin/bash
-usage() { echo "Usage: $0 [-r <boolean>] [-b <boolean>] [-m <boolean>] [-e <string>" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-r <boolean>] [-b <boolean>] [-m <boolean>]" 1>&2; exit 1; }
 
 brew=true;
 ruby=true;
@@ -16,9 +16,6 @@ while getopts ":r:b:m:e:" o; do
     m)
       mvim=${OPTARG}
       ;;
-    e)
-      email=${OPTARG}
-      ;;
     *)
       usage
       ;;
@@ -26,7 +23,7 @@ while getopts ":r:b:m:e:" o; do
 done
 shift $((OPTIND-1))
 
-if [ -z "${ruby}" ] || [ -z "${brew}" ] || [ -z "${mvim}" ] || [ -z "${email}" ]; then
+if [ -z "${ruby}" ] || [ -z "${brew}" ] || [ -z "${mvim}" ]; then
   usage
 fi
 
@@ -78,9 +75,6 @@ echo "creating bash environment files"
 # ln -s $HOME/.dotfiles/bash/git-completion.bash $HOME/.git-completion.bash
 ln -s $HOME/.dotfiles/config $HOME/.config
 
-echo "configuring ssh environment"
-ln -s $HOME/.dotfiles/ssh $HOME/.ssh
-ssh-keygen -t rsa -C $email
 
 
 # echo "source bash files - you may need to do it manually"
