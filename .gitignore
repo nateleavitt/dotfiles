@@ -1,10 +1,5 @@
 .DS_Store
-config
 vim/.netrwhist
-fish/fishd.*
-ssh/id_rsa
-ssh/id_rsa.pub
-ssh/pems/
-ssh/known_hosts
-fish/fish_history
-fish/fishd.*
+ssh
+config/fish/fish_history
+config/fish/fishd.*
