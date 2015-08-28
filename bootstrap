@@ -1,15 +1,11 @@
 #! /bin/bash
-usage() { echo "Usage: $0 [-r <boolean>] [-b <boolean>] [-m <boolean>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-b <boolean>] [-m <boolean>]" 1>&2; exit 1; }
 
 brew=true;
-ruby=true;
 mvim=true;
 
-while getopts ":r:b:m:e:" o; do
+while getopts ":r:b:m:" o; do
   case "${o}" in
-    r)
-      ruby=${OPTARG}
-      ;;
     b)
       brew=${OPTARG}
       ;;
@@ -23,7 +19,7 @@ while getopts ":r:b:m:e:" o; do
 done
 shift $((OPTIND-1))
 
-if [ -z "${ruby}" ] || [ -z "${brew}" ] || [ -z "${mvim}" ]; then
+if [ -z "${brew}" ] || [ -z "${mvim}" ]; then
   usage
 fi
 
@@ -38,16 +34,10 @@ function install_homebrew() {
     || die "Had problems installing Homebrew"
 }
 
-function install_ruby() {
-  echo "installing ruby"
-  brew install rbenv ruby-build
-}
-
 function install_mvim() {
   echo "installing mvim"
   brew install macvim --with-lua
   brew linkapps macvim
-
 }
 
 # move dotfiles
@@ -81,8 +71,11 @@ ln -s $HOME/.dotfiles/config $HOME/.config
 # source $HOME/.bashrc
 # source $HOME/.bash_profile
 
-if $ruby ; then install_ruby ; fi
 if $brew ; then install_homebrew ; fi
+echo "installing ruby"
+brew install rbenv ruby-build
+echo "installing go"
+brew install go
 if $mvim ; then install_mvim ; fi
 
 
