@@ -16,7 +16,6 @@ bootstrap # look at options below
 
 ## Options ##
   * `-b <boolean>` install Homebrew (default true)
-  * `-r <boolean>` install RVM (default true)
   * `-m <boolean>` install Mvim (default true)
 
 ## Examples ##
@@ -25,12 +24,7 @@ Installation without Homebrew
 bootstrap -b false
 ```
 
-without RVM
+without both Homebrew and mvim
 ```bash
-bootstrap -r false
-```
-
-without both Homebrew and RVM
-```bash
-bootstrap -b false -r false
+bootstrap -b false -m false
 ```
