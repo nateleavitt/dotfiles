@@ -40,6 +40,13 @@ function install_mvim() {
   brew linkapps macvim
 }
 
+# setup dev env
+echo 'Creating code directories'
+mkdir $HOME/Code
+mkdir $HOME/Code/github.com
+mkdir $HOME/Code/dev
+mdkir $HOME/Code/go
+
 # move dotfiles
 echo 'moving dotfiles to hidden'
 mv $HOME/dotfiles ~/.dotfiles
@@ -76,6 +83,8 @@ echo "installing ruby"
 brew install rbenv ruby-build
 echo "installing go"
 brew install go
+echo "installing elixir"
+brew install elixir
 if $mvim ; then install_mvim ; fi
 
 
