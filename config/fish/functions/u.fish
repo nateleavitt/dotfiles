@@ -1,3 +1,0 @@
-function u
-  cd ..
-end
