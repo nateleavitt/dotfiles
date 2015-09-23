@@ -1,0 +1,3 @@
+function uu
+  cd ../..
+end
