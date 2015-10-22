@@ -51,8 +51,8 @@ set guioptions-=r
 set go-=L
 
 " Default gui color scheme
-set background=dark
-colorscheme solarized
+set background=light
+colorscheme tomorrow-night-eighties
 
 " Set gui font
 set guifont=Menlo:h14
