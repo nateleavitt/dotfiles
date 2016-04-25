@@ -1,0 +1,28 @@
+# Cache Rake Bash Completion
+.rake_task_cache~
+.rails_generators~
+
+# Swap Files #
+##############
+*.swp
+
+# Logs and databases #
+######################
+*.log
+*.sqlite
+
+# OS Generated Files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Trashes
+.Spotlight-V100
+ehthumbs.db
+Thumbs.db
+
+# ctags
+tags
+
+# Temperary Solution to script setup files
+script/setup
