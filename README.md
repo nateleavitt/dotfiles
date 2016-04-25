@@ -28,3 +28,6 @@ without both Homebrew and mvim
 ```bash
 bootstrap -b false -m false
 ```
+
+## Todos ##
+Need to update scripts
