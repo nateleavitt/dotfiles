@@ -98,6 +98,10 @@ ln -s $HOME/.dotfiles/vim/gvimrc.after $HOME/.gvimrc.after
 ln -s $HOME/.dotfiles/vim/vimrc.before $HOME/.vimrc.before
 ln -s $HOME/.dotfiles/vim/vimrc.after $HOME/.vimrc.after
 ln -s $HOME/.dotfiles/bin $HOME
+ln -s $HOME/.dotfiles/git/gitignore_global $HOME/.gitignore_global
+
+echo "Configuring global git ignore"
+git config --global core.excludesfile ~/.gitignore_global
 
 echo "downloading and configuring vim plugins"
 git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
