@@ -14,11 +14,7 @@ function d; docker $argv; end
 function c; cd $argv; end
 function t; terraform $argv; end
 
-function dcr; docker-compose run $argv; end
-function dce; docker-compose exec $argv; end
-function dcu; docker-compose up; end
-function dcd; docker-compose down; end
-function dcb; docker-compose build; end
+function dco; docker-compose $argv; end
 
 # function deval
 #   eval (docker-machine env $argv)
