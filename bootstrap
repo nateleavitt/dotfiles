@@ -44,6 +44,7 @@ function install_mvim() {
 echo 'Creating code directories'
 mkdir $HOME/Code
 mkdir $HOME/Code/github.com
+mkdir $HOME/Code/github.com/nateleavitt
 mkdir $HOME/Code/dev
 mdkir $HOME/Code/go
 
@@ -110,3 +111,6 @@ vim +PluginInstall +qall
 echo "Launching fish shell"
 fish
 echo "Finished!"
+
+# TODO 
+# docker
