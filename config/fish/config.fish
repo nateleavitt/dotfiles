@@ -15,6 +15,8 @@ function c; cd $argv; end
 function t; terraform $argv; end
 
 function dco; docker-compose $argv; end
+function dm; docker-machine $argv; end
+function dco-be; docker-compose exec web bundle exec $argv; end
 
 # function deval
 #   eval (docker-machine env $argv)

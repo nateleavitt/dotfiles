@@ -3,3 +3,6 @@ vim/.netrwhist
 ssh
 config/fish/fish_history
 config/fish/fishd.*
+atom/blob-store
+atom/compile-cache
+atom/storage
