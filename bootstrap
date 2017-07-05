@@ -28,6 +28,16 @@ function die() {
     exit 1
 }
 
+function install_ruby() {
+  echo "installing ruby"
+  brew install rbenv ruby-build
+}
+
+function install_homebrew() {
+  echo "installing homebrew"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" \
+    || die "Had problems installing Homebrew"
+}
 
 function install_fish() {
   echo "installing and configuring fish"
@@ -38,17 +48,6 @@ function install_fish() {
   # Adding bash environment files
   echo "creating bash environment files"
   ln -s $HOME/.dotfiles/config $HOME/.config
-}
-
-function install_ruby() {
-  echo "installing ruby"
-  brew install rbenv ruby-build
-}
-
-function install_homebrew() {
-  echo "installing homebrew"
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" \
-    || die "Had problems installing Homebrew"
 }
 
 function install_mvim() {
@@ -118,9 +117,9 @@ for i in $HOME/.vim \
   fi
 done
 
-install_fish
 install_ruby
 if $brew ; then install_homebrew ; fi
+install_fish
 if $mvim ; then install_mvim ; fi
 install_node
 install_atom
