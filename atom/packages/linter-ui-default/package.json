@@ -2,39 +2,39 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/td/tx84hz7535q2_0sp6rtj8bh80000gn/T/d-117520-23718-15o1o66.svpmz5xw29/package.tgz",
+        "raw": "/private/var/folders/72/mm3ttds93wjfpf0762kdr_1r0000gn/T/d-11765-13774-12x6cpk.tix2hxs9k9/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/td/tx84hz7535q2_0sp6rtj8bh80000gn/T/d-117520-23718-15o1o66.svpmz5xw29/package.tgz",
-        "spec": "/private/var/folders/td/tx84hz7535q2_0sp6rtj8bh80000gn/T/d-117520-23718-15o1o66.svpmz5xw29/package.tgz",
+        "rawSpec": "/private/var/folders/72/mm3ttds93wjfpf0762kdr_1r0000gn/T/d-11765-13774-12x6cpk.tix2hxs9k9/package.tgz",
+        "spec": "/private/var/folders/72/mm3ttds93wjfpf0762kdr_1r0000gn/T/d-11765-13774-12x6cpk.tix2hxs9k9/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/td/tx84hz7535q2_0sp6rtj8bh80000gn/T/apm-install-dir-117520-23718-qvdkyo.fg4o3zbyb9"
+      "/private/var/folders/72/mm3ttds93wjfpf0762kdr_1r0000gn/T/apm-install-dir-11765-13774-z6kl3w.kyg8ehfr"
     ]
   ],
-  "_from": "../d-117520-23718-15o1o66.svpmz5xw29/package.tgz",
-  "_id": "linter-ui-default@1.6.1",
+  "_from": "../d-11765-13774-12x6cpk.tix2hxs9k9/package.tgz",
+  "_id": "linter-ui-default@1.6.2",
   "_inCache": true,
   "_location": "/linter-ui-default",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/td/tx84hz7535q2_0sp6rtj8bh80000gn/T/d-117520-23718-15o1o66.svpmz5xw29/package.tgz",
+    "raw": "/private/var/folders/72/mm3ttds93wjfpf0762kdr_1r0000gn/T/d-11765-13774-12x6cpk.tix2hxs9k9/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/td/tx84hz7535q2_0sp6rtj8bh80000gn/T/d-117520-23718-15o1o66.svpmz5xw29/package.tgz",
-    "spec": "/private/var/folders/td/tx84hz7535q2_0sp6rtj8bh80000gn/T/d-117520-23718-15o1o66.svpmz5xw29/package.tgz",
+    "rawSpec": "/private/var/folders/72/mm3ttds93wjfpf0762kdr_1r0000gn/T/d-11765-13774-12x6cpk.tix2hxs9k9/package.tgz",
+    "spec": "/private/var/folders/72/mm3ttds93wjfpf0762kdr_1r0000gn/T/d-11765-13774-12x6cpk.tix2hxs9k9/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-117520-23718-15o1o66.svpmz5xw29/package.tgz",
-  "_shasum": "45858564266294bb2056dbd70e8a39f8abfbea72",
+  "_resolved": "file:../d-11765-13774-12x6cpk.tix2hxs9k9/package.tgz",
+  "_shasum": "2cd669df4bd1740382364347ea8f429401e9dcd0",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/td/tx84hz7535q2_0sp6rtj8bh80000gn/T/d-117520-23718-15o1o66.svpmz5xw29/package.tgz",
-  "_where": "/private/var/folders/td/tx84hz7535q2_0sp6rtj8bh80000gn/T/apm-install-dir-117520-23718-qvdkyo.fg4o3zbyb9",
+  "_spec": "/private/var/folders/72/mm3ttds93wjfpf0762kdr_1r0000gn/T/d-11765-13774-12x6cpk.tix2hxs9k9/package.tgz",
+  "_where": "/private/var/folders/72/mm3ttds93wjfpf0762kdr_1r0000gn/T/apm-install-dir-11765-13774-z6kl3w.kyg8ehfr",
   "bugs": {
     "url": "https://github.com/steelbrain/linter-ui-default/issues"
   },
@@ -78,7 +78,7 @@
     "hidePanelWhenEmpty": {
       "description": "Hide panel when there are no issues to display",
       "type": "boolean",
-      "default": false,
+      "default": true,
       "order": 1
     },
     "decorateOnTreeView": {
@@ -228,7 +228,7 @@
   "scripts": {
     "test": "(apm test) && (flow check) && (eslint . )"
   },
-  "version": "1.6.1",
+  "version": "1.6.2",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -299,7 +299,7 @@
       },
       {
         "name": "js-tokens",
-        "version": "3.0.1",
+        "version": "3.0.2",
         "path": "node_modules/js-tokens/index.js"
       },
       {
@@ -409,7 +409,7 @@
       },
       {
         "name": "ua-parser-js",
-        "version": "0.7.12",
+        "version": "0.7.13",
         "path": "node_modules/ua-parser-js/src/ua-parser.js"
       },
       {
