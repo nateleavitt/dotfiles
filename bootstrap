@@ -28,15 +28,15 @@ function die() {
     exit 1
 }
 
-function install_ruby() {
-  echo "installing ruby"
-  brew install rbenv ruby-build
-}
-
 function install_homebrew() {
   echo "installing homebrew"
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" \
     || die "Had problems installing Homebrew"
+}
+
+function install_ruby() {
+  echo "installing ruby"
+  brew install rbenv ruby-build
 }
 
 function install_fish() {
@@ -117,8 +117,8 @@ for i in $HOME/.vim \
   fi
 done
 
-install_ruby
 if $brew ; then install_homebrew ; fi
+install_ruby
 install_fish
 if $mvim ; then install_mvim ; fi
 install_node
