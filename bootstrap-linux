@@ -113,6 +113,7 @@ ln -s $HOME/.dotfiles/atom $HOME/.atom
 
 echo "Configuring global git ignore"
 git config --global core.excludesfile ~/.gitignore_global
+git config --global credential.helper 'cache'
 # git config --global credential.helper osxkeychain
 
 echo "downloading and configuring vim plugins"
