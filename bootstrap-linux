@@ -1,0 +1,122 @@
+#! /bin/bash
+
+
+function die() {
+    echo "${@}"
+    exit 1
+}
+
+function udpate_apt {
+  sudo apt-get update
+}
+
+function install_ruby() {
+  echo "installing ruby"
+  sudo apt-get install -y rbenv
+}
+
+function install_docker() {
+  # Environment variables you need to set so you don't have to edit the script below.
+  export DOCKER_CHANNEL=edge
+  export DOCKER_COMPOSE_VERSION=1.21.0
+
+  # Install packages to allow apt to use a repository over HTTPS.
+  sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+
+  # Add Docker's official GPG key.
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+  # Verify the fingerprint.
+  sudo apt-key fingerprint 0EBFCD88
+
+  # Pick the release channel.
+  sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   ${DOCKER_CHANNEL}"
+
+  # Update the apt package index.
+  sudo apt-get update
+
+  # Install the latest version of Docker CE.
+  sudo apt-get install -y docker-ce
+
+  # Allow your user to access the Docker CLI without needing root.
+  sudo usermod -aG docker $USER
+
+  # Install Docker Compose.
+  sudo curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose &&
+  sudo chmod +x /usr/local/bin/docker-compose
+}
+
+function install_fish() {
+  echo "installing and configuring fish"
+  sudo apt-get install -y fish
+  echo "/usr/bin/fish" | sudo tee -a /etc/shells
+  chsh -s /usr/bin/fish
+
+  # Adding bash environment files
+  echo "creating bash environment files"
+  ln -s $HOME/.dotfiles/config $HOME/.config
+}
+
+echo 'Creating code directories'
+mkdir $HOME/Code
+mkdir $HOME/Code/github.com
+mkdir $HOME/Code/github.com/nateleavitt
+mkdir $HOME/Code/dev
+
+# move dotfiles
+echo 'moving dotfiles to hidden'
+mv $HOME/dotfiles $HOME/.dotfiles
+
+# Add <strong>.old</strong> to any existing Vim file in the home directory
+echo 'renaming old dirs to *.old if exist'
+for i in $HOME/.vim \
+  $HOME/.vimrc \
+  $HOME/.gvimrc \
+  $HOME/.gvimrc.before \
+  $HOME/.gvimrc.after \
+  $HOME/.vimrc.before \
+  $HOME/.vimrc.after \
+  $HOME/bin \
+  $HOME/.gitignore_global; do 
+  if [[ ( -e $i ) || ( -h $i ) ]]; then
+    echo "${i} has been renamed to ${i}.old"
+    mv "${i}" "${i}.old" || die "Could not move ${i} to ${i}.old"
+  fi
+done
+
+update_apt
+install_ruby
+install_docker
+install_fish
+
+# Remove and replace .vimrc.before after files
+echo "linking default gvimrc and vimrc files if installed"
+ln -s $HOME/.dotfiles/vim $HOME/.vim
+ln -s $HOME/.dotfiles/vim/vimrc $HOME/.vimrc
+ln -s $HOME/.dotfiles/vim/gvimrc $HOME/.gvimrc
+ln -s $HOME/.dotfiles/vim/gvimrc.before $HOME/.gvimrc.before
+ln -s $HOME/.dotfiles/vim/gvimrc.after $HOME/.gvimrc.after
+ln -s $HOME/.dotfiles/vim/vimrc.before $HOME/.vimrc.before
+ln -s $HOME/.dotfiles/vim/vimrc.after $HOME/.vimrc.after
+ln -s $HOME/.dotfiles/bin $HOME
+ln -s $HOME/.dotfiles/git/gitignore_global $HOME/.gitignore_global
+ln -s $HOME/.dotfiles/atom $HOME/.atom
+
+echo "Configuring global git ignore"
+git config --global core.excludesfile ~/.gitignore_global
+# git config --global credential.helper osxkeychain
+
+echo "downloading and configuring vim plugins"
+git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+
+echo "Launching fish shell"
+fish
+echo "Finished!"
