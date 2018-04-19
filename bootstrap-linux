@@ -12,7 +12,9 @@ function udpate_apt {
 
 function install_ruby() {
   echo "installing ruby"
-  sudo apt-get install -y rbenv
+  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+  mkdir ~/.rbenv/plugins
+  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 }
 
 function install_docker() {
