@@ -87,7 +87,6 @@ function move_files() {
     $HOME/.gvimrc.after \
     $HOME/.vimrc.before \
     $HOME/.vimrc.after \
-    $HOME/bin \
     $HOME/.gitignore_global \
     $HOME/.atom; do
     if [[ ( -e $i ) || ( -h $i ) ]]; then
@@ -109,7 +108,6 @@ function config_vim() {
   ln -s $HOME/.dotfiles/vim/gvimrc.after $HOME/.gvimrc.after
   ln -s $HOME/.dotfiles/vim/vimrc.before $HOME/.vimrc.before
   ln -s $HOME/.dotfiles/vim/vimrc.after $HOME/.vimrc.after
-  ln -s $HOME/.dotfiles/bin $HOME
   ln -s $HOME/.dotfiles/git/gitignore_global $HOME/.gitignore_global
   donemsg
 }
