@@ -31,11 +31,13 @@ function install_ruby() {
 }
 
 function install_zsh() {
-  echo -n "installing ruby"
+  echo -n "installing ohmyzsh"
   sleep 1
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   donemsg
 }
+
+# TODO: Need to configure zsh
 
 function install_vscode() {
   echo -n "installing vscode"
@@ -131,11 +133,21 @@ function install_vim_plugins() {
 # INSTALL
 printf "\n${GREEN}Welcome to nateleavitt's OSX setup script${NC}\n"
 sleep 2
-
+install_homebrew
+install_ruby
+install_zsh
+install_vscode
+install_docker
+install_other
+create_env
+move_files
+config_vim
+config_git
+install_vim_plugins
 
 sleep 2
 printf "${GREEN}Everything is now setup!${NC}\n"
 sleep 1
-printf "let me know if you have any questions: https://github.com/nateleavitt/dotfiles\n"
+printf "Let me know if you have any questions: https://github.com/nateleavitt/dotfiles\n"
 printf "Thank you!\n"
 printf "\n\n"
