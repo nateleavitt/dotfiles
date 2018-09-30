@@ -1,0 +1,141 @@
+#! /bin/bash
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+
+function die() {
+    echo "\n${RED}${@}${NC}\n"
+    exit 1
+}
+
+function donemsg() {
+  sleep 2
+  printf \n"${GREEN}done!${NC}\n"
+  sleep 1
+}
+
+function install_homebrew() {
+  echo -n "installing homebrew"
+  sleep 1
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" \
+    || die "Had problems installing Homebrew"
+  donemsg
+}
+
+function install_ruby() {
+  echo -n "installing ruby"
+  sleep 1
+  brew install rbenv ruby-build
+  donemsg
+}
+
+function install_zsh() {
+  echo -n "installing ruby"
+  sleep 1
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  donemsg
+}
+
+function install_vscode() {
+  echo -n "installing vscode"
+  sleep 1
+  brew cask install visual-studio-code
+  donemsg
+}
+
+function install_docker() {
+  echo -n "installing docker"
+  sleep 1
+  brew cask install docker
+  donemsg
+}
+
+function install_other() {
+  echo -n "installing other tools"
+  sleep 1
+  brew cask install typora
+  brew cask install google-chrome
+  brew cask install 1password
+  brew cask install slack
+  brew install ack
+  brew install wget
+  donemsg
+}
+
+function create_env() {
+  # setup dev env
+  echo -n 'Creating code directories'
+  sleep 1
+  mkdir $HOME/Code
+  mkdir $HOME/Code/github.com
+  mkdir $HOME/Code/github.com/nateleavitt
+  mkdir $HOME/Code/github.com/loyalstream
+  donemsg
+}
+
+function move_files() {
+  # Add <strong>.old</strong> to any existing Vim file in the home directory
+  echo -n 'renaming old dirs to *.old if exist'
+  sleep
+  for i in $HOME/.vim \
+    $HOME/.vimrc \
+    $HOME/.gvimrc \
+    $HOME/.gvimrc.before \
+    $HOME/.gvimrc.after \
+    $HOME/.vimrc.before \
+    $HOME/.vimrc.after \
+    $HOME/bin \
+    $HOME/.gitignore_global \
+    $HOME/.atom; do
+    if [[ ( -e $i ) || ( -h $i ) ]]; then
+      echo "${i} has been renamed to ${i}.old"
+      mv "${i}" "${i}.old" || die "Could not move ${i} to ${i}.old"
+    fi
+  done
+  donemsg
+}
+
+function config_vim() {
+  # Remove and replace .vimrc.before after files
+  echo -n "setting up vim and configuring git"
+  sleep 1
+  ln -s $HOME/.dotfiles/vim $HOME/.vim
+  ln -s $HOME/.dotfiles/vim/vimrc $HOME/.vimrc
+  ln -s $HOME/.dotfiles/vim/gvimrc $HOME/.gvimrc
+  ln -s $HOME/.dotfiles/vim/gvimrc.before $HOME/.gvimrc.before
+  ln -s $HOME/.dotfiles/vim/gvimrc.after $HOME/.gvimrc.after
+  ln -s $HOME/.dotfiles/vim/vimrc.before $HOME/.vimrc.before
+  ln -s $HOME/.dotfiles/vim/vimrc.after $HOME/.vimrc.after
+  ln -s $HOME/.dotfiles/bin $HOME
+  ln -s $HOME/.dotfiles/git/gitignore_global $HOME/.gitignore_global
+  donemsg
+}
+
+function config_git() {
+  echo  -n "Configuring global git ignore"
+  sleep 1
+  git config --global core.excludesfile ~/.gitignore_global
+  # git config --global credential.helper osxkeychain
+  donemsg
+}
+
+function install_vim_plugins() {
+  echo -n "downloading and configuring vim plugins"
+  sleep 1
+  git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+  vim +PluginInstall +qall
+  donemsg
+}
+
+# INSTALL
+printf "\n${GREEN}Welcome to nateleavitt's OSX setup script${NC}\n"
+sleep 2
+
+
+sleep 2
+printf "${GREEN}Everything is now setup!${NC}\n"
+sleep 1
+printf "let me know if you have any questions: https://github.com/nateleavitt/dotfiles\n"
+printf "Thank you!\n"
+printf "\n\n"
