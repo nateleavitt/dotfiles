@@ -39,6 +39,14 @@ function install_zsh() {
 
 # TODO: Need to configure zsh
 
+function install_node() {
+  echo -n "installing node and yarn"
+  sleep 1
+  brew install node
+  brew install yarn
+  donemsg
+}
+
 function install_vscode() {
   echo -n "installing vscode"
   sleep 1
@@ -139,6 +147,7 @@ sleep 2
 install_homebrew
 install_ruby
 install_zsh
+install_node
 install_vscode
 install_docker
 install_other
