@@ -67,13 +67,14 @@ function install_docker() {
 function install_other() {
   echo "installing other tools\n"
   sleep 1
-  brew cask install hyper
   brew cask install typora
   brew cask install google-chrome
   brew cask install 1password
   brew cask install slack
+  brew cask install hyper
   brew install ack
   brew install wget
+  defaults write co.zeit.hyper ApplePressAndHoldEnabled -bool false
   donemsg
 }
 
@@ -104,6 +105,7 @@ function move_files() {
     $HOME/.vimrc.before \
     $HOME/.vimrc.after \
     $HOME/.gitignore_global \
+    $HOME/.hyper.js \
     $HOME/.oh-my-zsh/custom/aliases.zsh \
     $HOME/.oh-my-zsh/custom/completions.zsh \
     $HOME/.oh-my-zsh/custom/exports.zsh \
@@ -128,6 +130,7 @@ function config_vim() {
   ln -s $HOME/.dotfiles/vim/vimrc.before $HOME/.vimrc.before
   ln -s $HOME/.dotfiles/vim/vimrc.after $HOME/.vimrc.after
   ln -s $HOME/.dotfiles/git/gitignore_global $HOME/.gitignore_global
+  ln -s $HOME/.dotfiles/hyper/hyper.js $HOME/.hyper.js
   ln -s $HOME/.dotfiles/zsh/zshrc $HOME/.zshrc
   ln -s $HOME/.dotfiles/zsh/custom/aliases.zsh $HOME/.oh-my-zsh/custom/aliases.zsh
   ln -s $HOME/.dotfiles/zsh/custom/completions.zsh $HOME/.oh-my-zsh/custom/completions.zsh
@@ -174,3 +177,4 @@ printf "\n"
 printf "Let me know if you have any questions: https://github.com/nateleavitt/dotfiles\n"
 printf "Thank you!\n"
 printf "\n"
+
