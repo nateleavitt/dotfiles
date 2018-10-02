@@ -1,5 +1,5 @@
-cn() { cd ~/Code/github/nateleavitt/$1; }
-compctl -W ~/Code/github/nateleavitt/ -/ cn
+cn() { cd ~/Code/github.com/nateleavitt/$1; }
+compctl -W ~/Code/github.com/nateleavitt/ -/ cn
 
-cl() { cd ~/Code/github/loyalstream/$1; }
-compctl -W ~/Code/github/loyalstream/ -/ cl
+cl() { cd ~/Code/github.com/loyalstream/$1; }
+compctl -W ~/Code/github.com/loyalstream/ -/ cl
