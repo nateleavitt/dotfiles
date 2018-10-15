@@ -61,6 +61,7 @@ function install_docker() {
   echo "installing docker\n"
   sleep 1
   brew cask install docker
+  unset DOCKER_HOST
   donemsg
 }
 
@@ -74,7 +75,9 @@ function install_other() {
   brew cask install hyper
   brew install ack
   brew install wget
+  brew install mysql
   defaults write co.zeit.hyper ApplePressAndHoldEnabled -bool false
+  defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
   donemsg
 }
 
@@ -143,6 +146,7 @@ function config_git() {
   sleep 1
   git config --global core.excludesfile ~/.gitignore_global
   git config --global credential.helper osxkeychain
+  git config --global pager.branch false
   donemsg
 }
 
