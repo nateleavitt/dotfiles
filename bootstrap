@@ -75,7 +75,6 @@ function install_other() {
   brew cask install hyper
   brew install ack
   brew install wget
-  brew install mysql
   defaults write co.zeit.hyper ApplePressAndHoldEnabled -bool false
   defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
   donemsg
