@@ -150,11 +150,18 @@ function config_git() {
 }
 
 function install_vim_plugins() {
-  echo "downloading and configuring vim plugins\n"
+  printf "downloading and configuring vim plugins\n"
   sleep 1
   git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
   vim +PluginInstall +qall
   donemsg
+}
+
+function install_font() {
+  printf "installing SF Mono font\n"
+  sleep 1
+  cp $HOME/.dotfiles/font/*.otf ~/Library/Fonts/
+  domemsg
 }
 
 # INSTALL
