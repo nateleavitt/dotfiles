@@ -2,22 +2,23 @@
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
+YELLOW='\033[0;93m'
+
 
 
 function die() {
-    echo "\n${RED}${@}${NC}\n"
-    exit 1
+  printf "\n${RED}${@}${NC}\n"
+  exit 1
 }
 
 function donemsg() {
   sleep 2
-  printf "\n"
-  printf "${GREEN}done!${NC}\n"
+  printf "e[93 ${GREEN}DONE!${NC}\n"
   sleep 1
 }
 
 function install_homebrew() {
-  echo -n "installing homebrew"
+  printf "installing homebrew\n"
   sleep 1
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" \
     || die "Had problems installing Homebrew"
@@ -25,14 +26,14 @@ function install_homebrew() {
 }
 
 function install_ruby() {
-  echo "installing ruby\n"
+  printf "installing ruby\n"
   sleep 1
   brew install rbenv ruby-build
   donemsg
 }
 
 function install_zsh() {
-  echo "installing oh-my-zsh\n"
+  printf "installing oh-my-zsh\n"
   sleep 1
   git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
   sleep 1
@@ -43,7 +44,7 @@ function install_zsh() {
 # TODO: Need to configure zsh
 
 function install_node() {
-  echo "installing node and yarn\n"
+  printf "installing node and yarn\n"
   sleep 1
   brew install node
   brew install yarn
@@ -51,14 +52,15 @@ function install_node() {
 }
 
 function install_vscode() {
-  echo "installing vscode\n"
+  printf "installing vscode\n"
   sleep 1
   brew cask install visual-studio-code
+  cp vscode/settings.json $HOME/Library/Application\ Support/Code/User/
   donemsg
 }
 
 function install_docker() {
-  echo "installing docker\n"
+  printf "installing docker\n"
   sleep 1
   brew cask install docker
   unset DOCKER_HOST
@@ -66,7 +68,7 @@ function install_docker() {
 }
 
 function install_other() {
-  echo "installing other tools\n"
+  printf "installing other tools\n"
   sleep 1
   brew cask install typora
   brew cask install google-chrome
@@ -82,7 +84,7 @@ function install_other() {
 
 function create_env() {
   # setup dev env
-  echo "Creating code directories\n"
+  printf "Creating code directories\n"
   sleep 1
   mkdir $HOME/Code
   mkdir $HOME/Code/github.com
@@ -93,11 +95,11 @@ function create_env() {
 
 function move_files() {
   # move dotfiles
-  echo "moving dotfiles to hidden\n"
+  printf "moving dotfiles to hidden\n"
   mv $HOME/dotfiles ~/.dotfiles
   # Add <strong>.old</strong> to any existing Vim file in the home directory
   sleep 1
-  echo "renaming old dirs to *.old if exist\n"
+  printf "renaming old dirs to *.old if exist\n"
   sleep 1
   for i in $HOME/.vim \
     $HOME/.vimrc \
@@ -122,7 +124,7 @@ function move_files() {
 
 function config_vim() {
   # Remove and replace .vimrc.before after files
-  echo "setting up vim and configuring git\n"
+  printf "setting up vim and configuring git\n"
   sleep 1
   ln -s $HOME/.dotfiles/vim $HOME/.vim
   ln -s $HOME/.dotfiles/vim/vimrc $HOME/.vimrc
@@ -141,7 +143,7 @@ function config_vim() {
 }
 
 function config_git() {
-  echo  "Configuring global git ignore\n"
+  printf  "Configuring global git ignore\n"
   sleep 1
   git config --global core.excludesfile ~/.gitignore_global
   git config --global credential.helper osxkeychain
@@ -160,13 +162,15 @@ function install_vim_plugins() {
 function install_font() {
   printf "installing SF Mono font\n"
   sleep 1
-  cp $HOME/.dotfiles/font/*.otf ~/Library/Fonts/
+  cp font/*.otf $HOME/Library/Fonts/
   domemsg
 }
 
 # INSTALL
 printf "\n"
+printf "*******************************************************\n"
 printf "${GREEN}Welcome to nateleavitt's OSX setup script${NC}\n"
+printf "*******************************************************\n"
 sleep 3
 install_homebrew
 install_ruby
@@ -181,10 +185,13 @@ config_vim
 config_git
 install_vim_plugins
 sleep 2
+printf "*******************************************************\n"
 printf "${GREEN}Everything is now setup!${NC}\n"
 sleep 2
 printf "\n"
-printf "Let me know if you have any questions: https://github.com/nateleavitt/dotfiles\n"
-printf "Thank you!\n"
+printf "Let me know if you have any questions:\n"
+printf "https://github.com/nateleavitt/dotfiles\n"
+printf "e[93 ${GREEN}Thank you!${NC}\n"
+printf "*******************************************************\n"
 printf "\n"
 
