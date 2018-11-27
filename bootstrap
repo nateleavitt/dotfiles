@@ -55,7 +55,6 @@ function install_vscode() {
   printf "installing vscode\n"
   sleep 1
   brew cask install visual-studio-code
-  cp vscode/settings.json $HOME/Library/Application\ Support/Code/User/
   donemsg
 }
 
@@ -110,10 +109,11 @@ function move_files() {
     $HOME/.vimrc.after \
     $HOME/.gitignore_global \
     $HOME/.hyper.js \
+    $HOME/.zshrc \
     $HOME/.oh-my-zsh/custom/aliases.zsh \
     $HOME/.oh-my-zsh/custom/completions.zsh \
     $HOME/.oh-my-zsh/custom/exports.zsh \
-    $HOME/.zshrc; do
+    $HOME/Library/Application\ Support/Code/User/settings.json; do
     if [[ ( -e $i ) || ( -h $i ) ]]; then
       echo "${i} has been renamed to ${i}.old"
       mv "${i}" "${i}.old" || die "Could not move ${i} to ${i}.old"
@@ -139,6 +139,7 @@ function config_vim() {
   ln -s $HOME/.dotfiles/zsh/custom/aliases.zsh $HOME/.oh-my-zsh/custom/aliases.zsh
   ln -s $HOME/.dotfiles/zsh/custom/completions.zsh $HOME/.oh-my-zsh/custom/completions.zsh
   ln -s $HOME/.dotfiles/zsh/custom/exports.zsh $HOME/.oh-my-zsh/custom/exports.zsh
+  ln -s $HOME/.dotfiles/vscode/settings.json $HOME/Library/Application\ Support/Code/User/
   donemsg
 }
 
