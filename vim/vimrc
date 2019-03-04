@@ -195,7 +195,7 @@ set modelines=10
 " Default color scheme
 set t_Co=256
 set background=dark
-colorscheme tomorrow-night-eighties
+colorscheme Tomorrow-Night-Eighties
 
 
 "Directories for swp files
