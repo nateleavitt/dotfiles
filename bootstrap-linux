@@ -35,10 +35,12 @@ function install_prereqs() {
     sudo apt -y install ca-certificates gnupg-agent software-properties-common
 
     # Required for capslock to esc key
+    # https://askubuntu.com/questions/1059663/remapping-caps-lock-to-escape-in-ubuntu-18-04-bionic
     sudo apt -y install gnome-tweak-tool
     # Gnome Tweaks -> Keyboard & Mouse -> Additional Layout Options -> Caps Lock key behavior.
 
     sudo apt -y install wget
+    sudo apt -y install vim
     sudo apt -y install ack
     sudo apt -y install gdebi
   } &> /dev/null
@@ -100,7 +102,7 @@ function install_docker() {
     # setup to run on startup
     sudo systemctl enable docker
     # Installing docker compose
-    sudo curl -L https://github.com/docker/compose/releases/download/1.24.0-rc1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    sudo wget -q https://github.com/docker/compose/releases/download/1.24.0-rc1/docker-compose-`uname -s`-`uname -m` -O /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
   } &> /dev/null
   donemsg
@@ -166,7 +168,6 @@ function move_files() {
       $HOME/.vimrc.after \
       $HOME/.gitignore_global \
       $HOME/.zshrc \
-      $HOME/.oh-my-zsh \
       $HOME/.config/Code/User/settings.json; do
       if [[ ( -e $i ) || ( -h $i ) ]]; then
         echo "${i} has been renamed to ${i}.old"
@@ -177,7 +178,7 @@ function move_files() {
   donemsg
 }
 
-function config_vim() {
+function config_files() {
   # Remove and replace .vimrc.before after files
   printf "setting up configuration files..."
   sleep 1
@@ -227,8 +228,9 @@ printf "*******************************************************\n"
 printf "${GREEN}Welcome to nateleavitt's Linux setup script${NC}\n"
 printf "*******************************************************\n"
 sudo apt -y update &> /dev/null
-# install_prereqs
+install_prereqs
 install_zsh
+config_files
 install_node
 install_vscode
 install_docker
@@ -236,7 +238,6 @@ install_other
 create_env
 move_files
 install_ruby
-config_vim
 config_git
 install_vim_plugins
 remove_packages
