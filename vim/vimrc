@@ -36,10 +36,6 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'fatih/vim-go'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'dag/vim-fish'
-Plugin 'markcornick/vim-terraform'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'isRuslan/vim-es6'
 
 " All of your Plugins must be added before the following line
