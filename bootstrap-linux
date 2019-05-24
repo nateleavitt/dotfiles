@@ -230,13 +230,13 @@ printf "*******************************************************\n"
 sudo apt -y update &> /dev/null
 install_prereqs
 install_zsh
+move_files
 config_files
 install_node
 install_vscode
 install_docker
 install_other
 create_env
-move_files
 install_ruby
 config_git
 install_vim_plugins
