@@ -13,5 +13,23 @@
   "files.trimTrailingWhitespace": true,
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "keyboard.dispatch": "keyCode"
+  "keyboard.dispatch": "keyCode",
+  "files.exclude": {
+    "**/.git": true,         // this is a default value
+    "**/.DS_Store": true,    // this is a default value
+
+    "**/node_modules": true, // this excludes all folders
+                              // named "node_modules" from
+                              // the explore tree
+
+    // alternative version
+    "node_modules": true    // this excludes the folder
+                            // only from the root of
+                            // your workspace
+  },
+  "files.autoSave": "onFocusChange",
+  "terminal.integrated.rendererType": "dom",
+  "ruby.rubocop.configFilePath": "api/.rubocop.yml",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "liveshare.featureSet": "insiders"
 }
