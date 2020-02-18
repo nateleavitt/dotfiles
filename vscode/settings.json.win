@@ -1,0 +1,39 @@
+{
+  "terminal.integrated.shell.windows": "C:\\WINDOWS\\Sysnative\\bash.exe",
+  "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\bash.exe",
+  "git.ignoreMissingGitWarning": true,
+  "editor.detectIndentation": false,
+  "workbench.activityBar.visible": false,
+  "workbench.colorCustomizations": {
+    "statusBar.background" : "#1A1A1A",
+    "statusBar.noFolderBackground" : "#212121",
+    "statusBar.debuggingBackground": "#263238"
+  },
+  "editor.minimap.enabled": false,
+  "editor.fontFamily": "Mono, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "extensions.ignoreRecommendations": false,
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "keyboard.dispatch": "keyCode",
+  "files.exclude": {
+    "**/.git": true,         // this is a default value
+    "**/.DS_Store": true,    // this is a default value
+
+    "**/node_modules": true, // this excludes all folders
+                              // named "node_modules" from
+                              // the explore tree
+
+    // alternative version
+    "node_modules": true    // this excludes the folder
+                            // only from the root of
+                            // your workspace
+  },
+  "files.autoSave": "onFocusChange",
+  "terminal.integrated.rendererType": "dom",
+  "ruby.rubocop.configFilePath": "api/.rubocop.yml",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "liveshare.featureSet": "insiders"
+}
