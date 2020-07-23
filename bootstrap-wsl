@@ -28,7 +28,7 @@ function install_prereqs() {
   printf "installing prereqs..."
   {
     # Required for rbenv and ruby
-    sudo apt -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
+    sudo apt -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev libpq-dev
     # Required for vscode
     sudo apt -y install apt-transport-https
     # Required for docker
@@ -51,104 +51,7 @@ function install_zsh() {
   printf "installing oh-my-zsh..."
   {
     sudo apt -y install zsh
-    git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-  } &> /dev/null
-  donemsg
-}
-
-function install_ruby() {
-  printf "installing rbenv..."
-  {
-    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
-    echo 'eval "$(rbenv init -)"' >> ~/.zshrc
-    git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-  } &> /dev/null
-  donemsg
-}
-
-function install_node() {
-  printf "installing node and yarn..."
-  {
-    sudo apt -y install node
-    sudo apt -y install npm
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    sudo apt -y update
-    sudo apt -y install yarn
-  } &> /dev/null
-  donemsg
-}
-
-#function install_vscode() { 
-#  printf "installing vscode..."
-#    wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-#    sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-#    sudo apt -y install code
-#  } &> /dev/null
-#  donemsg
-#}
-
-#function install_docker() {
-#  printf "installing docker..."
-#  {
-#    sudo apt -y remove docker docker-engine docker.io containerd runc
-#    wget -q https://download.docker.com/linux/ubuntu/gpg -O- | sudo apt-key add -
-#    sudo apt-key fingerprint 0EBFCD88
-#    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-#    sudo apt -y update
-#    sudo apt -y install docker-ce docker-ce-cli containerd.io
-#    # setup users
-#    sudo groupadd docker
-#    sudo usermod -aG docker $USER
-#    # setup to run on startup
-#    sudo systemctl enable docker
-#    # Installing docker compose
-#    sudo wget -q https://github.com/docker/compose/releases/download/1.24.0-rc1/docker-compose-`uname -s`-`uname -m` -O /usr/local/bin/docker-compose
-#    sudo chmod +x /usr/local/bin/docker-compose
-#  } &> /dev/null
-#  donemsg
-#}
-
-function install_other() {
-#  printf "installing other typora..."
-#  {
-#    # Install typora
-#    wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
-#    sudo app-apt-repository 'deb https://typora.io/linux ./'
-#    sudo apt -y update
-#    sudo apt -y install typora
-#  } &> /dev/null
-#  donemsg
-
-#  printf "installing other google chrome..."
-#  {
-#    # Install google-chrome
-#    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-#    sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-#    sudo apt -y update
-#    sudo apt -y install google-chrome-stable
-#  } &> /dev/null
-#  donemsg
-
-  printf "installing other postgresql..."
-  {
-    # Install postgres
-    sudo apt -y install postgresql postgresql-contrib
-  } &> /dev/null
-  donemsg
-}
-
-function create_env() {
-  # setup dev env
-  printf "Creating code directories..."
-  sleep 2
-  {
-    mkdir -p $HOME/Code
-    mkdir -p $HOME/Code/github.com
-    mkdir -p $HOME/Code/github.com/nateleavitt
-    mkdir -p $HOME/Code/github.com/loyalstream
-    mkdir -p $HOME/.config/Code/User
+    sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
   } &> /dev/null
   donemsg
 }
@@ -198,7 +101,54 @@ function config_files() {
     ln -s $HOME/.dotfiles/zsh/custom/completions.zsh $HOME/.oh-my-zsh/custom/completions.zsh
     ln -s $HOME/.dotfiles/zsh/custom/exports.zsh $HOME/.oh-my-zsh/custom/exports.zsh
     # ln -s $HOME/.dotfiles/vscode/settings.json $HOME/.config/Code/User/settings.json
-    ln -s $HOME/.dotfiles/vscode/settings.json /mnt/c/Users/natel/AppData/Roaming/Code/settings.json
+    ln -s $HOME/.dotfiles/vscode/settings.json /mnt/c/Users/natel/AppData/Roaming/Code/User/settings.json
+  } &> /dev/null
+  donemsg
+}
+
+function install_node() {
+  printf "installing node and yarn..."
+  {
+    sudo apt -y install node
+    sudo apt -y install npm
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    sudo apt -y update
+    sudo apt -y install yarn
+  } &> /dev/null
+  donemsg
+}
+
+function install_postgres() {
+  printf "installing other postgresql..."
+  {
+    # Install postgres
+    sudo apt -y install postgresql postgresql-contrib
+  } &> /dev/null
+  donemsg
+}
+
+function create_env() {
+  # setup dev env
+  printf "Creating code directories..."
+  sleep 2
+  {
+    mkdir -p $HOME/Code
+    mkdir -p $HOME/Code/github.com
+    mkdir -p $HOME/Code/github.com/nateleavitt
+    mkdir -p $HOME/Code/github.com/loyalstream
+    mkdir -p $HOME/.config/Code/User
+  } &> /dev/null
+  donemsg
+}
+
+function install_ruby() {
+  printf "installing rbenv..."
+  {
+    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
+    echo 'eval "$(rbenv init -)"' >> ~/.zshrc
+    git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
   } &> /dev/null
   donemsg
 }
@@ -236,7 +186,7 @@ install_zsh
 move_files
 config_files
 install_node
-install_other
+install_postgres
 create_env
 install_ruby
 config_git
