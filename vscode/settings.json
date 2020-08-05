@@ -1,6 +1,7 @@
 {
   "workbench.activityBar.visible": false,
   "workbench.colorCustomizations": {
+
     "statusBar.background" : "#1A1A1A",
     "statusBar.noFolderBackground" : "#212121",
     "statusBar.debuggingBackground": "#263238"
@@ -31,5 +32,8 @@
   "terminal.integrated.rendererType": "dom",
   "ruby.rubocop.configFilePath": "api/.rubocop.yml",
   "diffEditor.ignoreTrimWhitespace": false,
-  "liveshare.featureSet": "insiders"
+  "liveshare.featureSet": "insiders",
+  "window.zoomLevel": 1,
+  "editor.folding": false,
+  "editor.glyphMargin": false
 }
