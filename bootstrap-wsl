@@ -53,6 +53,7 @@ function install_zsh() {
     sudo apt -y install zsh
     sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
   } &> /dev/null
+  chsh -s $(which zsh)
   donemsg
 }
 
