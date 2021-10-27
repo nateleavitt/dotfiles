@@ -63,6 +63,11 @@ set number
 set ruler
 syntax on
 
+" cursor settings
+let &t_SI = "\<esc>[5 q"  " blinking I-beam in insert mode
+let &t_SR = "\<esc>[3 q"  " blinking underline in replace mode
+let &t_EI = "\<esc>[1 q"  " default cursor (usually blinking block) otherwise
+
 " Set encoding
 set encoding=utf-8
 
