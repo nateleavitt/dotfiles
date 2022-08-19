@@ -21,14 +21,15 @@ function update_apt() {
   printf "updating apt\n"
   sleep 1
   sudo apt update
-  donemsg 
+  donemsg
 }
 
 function install_prereqs() {
   printf "installing prereqs..."
   {
     # Required for rbenv and ruby
-    sudo apt -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev libpq-dev
+    sudo apt -y install autoconf bison build-essential libssl-dev libyaml-dev \
+      libreadline-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libpq-dev
     # Required for vscode
     sudo apt -y install apt-transport-https
     # Required for docker
@@ -53,6 +54,7 @@ function install_zsh() {
     sudo apt -y install zsh
     sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
   } &> /dev/null
+  chsh -s $(which zsh)
   donemsg
 }
 
@@ -101,8 +103,8 @@ function config_files() {
     ln -s $HOME/.dotfiles/zsh/custom/completions.zsh $HOME/.oh-my-zsh/custom/completions.zsh
     ln -s $HOME/.dotfiles/zsh/custom/exports.zsh $HOME/.oh-my-zsh/custom/exports.zsh
     # ln -s $HOME/.dotfiles/vscode/settings.json $HOME/.config/Code/User/settings.json
-    ln -s $HOME/.dotfiles/vscode/settings.json /mnt/c/Users/natel/AppData/Roaming/Code/User/settings.json
-    ln -s $HOME/.dotfiles/wsl/wslconfig /mnt/c/Users/natel/.wslconfig
+    # ln -s $HOME/.dotfiles/vscode/settings.json /mnt/c/Users/$WINUSER}/AppData/Roaming/Code/User/settings.json
+    # ln -s $HOME/.dotfiles/wsl/wslconfig /mnt/c/Users/$WINUSER/.wslconfig
   } &> /dev/null
   donemsg
 }
