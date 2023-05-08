@@ -6,6 +6,14 @@ includes vim settings and plugins. It also installs Homebrew, RVM,
 and Mvim by default. See options for a list of all options you would
 like to install without those.
 
+## Prereqs  (Windows only) ##
+Install WSL2 (Windows only)
+```bash
+wsl --install
+```
+
+Then install Docker for Windows (https://docs.docker.com/desktop/install/windows-install/)
+
 ## Installation ##
 By default everything is installed in your HOME folder.
 ```bash
