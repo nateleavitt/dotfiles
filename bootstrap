@@ -190,7 +190,7 @@ function install_ruby() {
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
     echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
     echo 'eval "$(rbenv init -)"' >> ~/.zshrc
-    git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+    git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
   } >> temp_output.txt 2>&1
 
   # Stop tailing the output
