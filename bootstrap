@@ -18,14 +18,27 @@ function donemsg() {
 }
 
 function update_apt() {
-  printf "updating apt\n"
-  sleep 1
-  sudo apt update
+  printf "updating apt..."
+
+  # Start tailing the output in the background
+  tail -n 10 -f <(tee -a temp_output.txt)
+
+  {
+    sudo apt -y update
+  } >> temp_output.txt 2>&1
+
+  # Stop tailing the output
+  pkill -P $$ tail
+
   donemsg
 }
 
 function install_prereqs() {
   printf "installing prereqs..."
+
+  # Start tailing the output in the background
+  tail -n 10 -f <(tee -a temp_output.txt)
+
   {
     # Required for rbenv and ruby
     sudo apt -y install autoconf bison build-essential libssl-dev libyaml-dev \
@@ -44,16 +57,28 @@ function install_prereqs() {
     sudo apt -y install vim
     sudo apt -y install ack
     sudo apt -y install gdebi
-  } &> /dev/null
+  } >> temp_output.txt 2>&1
+
+  # Stop tailing the output
+  pkill -P $$ tail
+
   donemsg
 }
 
 function install_zsh() {
   printf "installing oh-my-zsh..."
+
+  # Start tailing the output in the background
+  tail -n 10 -f <(tee -a temp_output.txt)
+
   {
     sudo apt -y install zsh
-    sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-  } &> /dev/null
+    sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+  } >> temp_output.txt 2>&1
+
+  # Stop tailing the output
+  pkill -P $$ tail
+
   chsh -s $(which zsh)
   donemsg
 }
@@ -111,23 +136,33 @@ function config_files() {
 
 function install_node() {
   printf "installing node and yarn..."
+
+  # Start tailing the output in the background
+  tail -n 10 -f <(tee -a temp_output.txt)
+
   {
-    sudo apt -y install node
-    sudo apt -y install npm
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    sudo apt -y update
-    sudo apt -y install yarn
-  } &> /dev/null
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - &&\
+    sudo apt-get install -y nodejs
+  } >> temp_output.txt 2>&1
+
+  # Stop tailing the output
+  pkill -P $$ tail
   donemsg
 }
 
 function install_postgres() {
   printf "installing other postgresql..."
+
+  # Start tailing the output in the background
+  tail -n 10 -f <(tee -a temp_output.txt)
+
   {
     # Install postgres
     sudo apt -y install postgresql postgresql-contrib
-  } &> /dev/null
+  } >> temp_output.txt 2>&1
+
+  # Stop tailing the output
+  pkill -P $$ tail
   donemsg
 }
 
@@ -147,12 +182,19 @@ function create_env() {
 
 function install_ruby() {
   printf "installing rbenv..."
+
+  # Start tailing the output in the background
+  tail -n 10 -f <(tee -a temp_output.txt)
+
   {
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
     echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
     echo 'eval "$(rbenv init -)"' >> ~/.zshrc
-    git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-  } &> /dev/null
+    git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+  } >> temp_output.txt 2>&1
+
+  # Stop tailing the output
+  pkill -P $$ tail
   donemsg
 }
 
@@ -171,6 +213,26 @@ function install_vim_plugins() {
   donemsg
 }
 
+function install_gcloud() {
+  printf "installing gcloud..."
+
+  # Start tailing the output in the background
+  tail -n 10 -f <(tee -a temp_output.txt)
+
+  {
+    sudo apt -y install apt-transport-https ca-certificates gnupg curl sudo
+    echo "deb https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+    sudo apt update && sudo apt -y install google-cloud-cli
+    sudoe apt -y install google-cloud-sdk-gke-gcloud-auth-plugin
+  } >> temp_output.txt 2>&1
+
+  # Stop tailing the output
+  pkill -P $$ tail
+
+  donemsg
+}
+
 function remove_packages() {
   printf "cleaning up and removing old packages..."
   sleep 1
@@ -183,7 +245,8 @@ printf "\n"
 printf "*******************************************************\n"
 printf "${GREEN}Welcome to nateleavitt's Linux setup script${NC}\n"
 printf "*******************************************************\n"
-sudo apt -y update &> /dev/null
+# sudo apt -y update 2>&1 | tee -a temp_output.txt | tail -n 10 -f
+update_apt
 install_prereqs
 install_zsh
 move_files
@@ -194,6 +257,7 @@ create_env
 install_ruby
 config_git
 install_vim_plugins
+install_gcloud
 remove_packages
 sleep 2
 printf "*******************************************************\n"
@@ -205,5 +269,6 @@ printf "Let me know if you have any questions:\n"
 printf "https://github.com/nateleavitt/dotfiles\n"
 printf "${GREEN}Thank you!${NC}\n"
 printf "*******************************************************\n"
+printf "Note: run 'gcloud init' to initialize gcloud\n"
 printf "\n"
 
