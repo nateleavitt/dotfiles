@@ -1,3 +1,6 @@
+cn8() { cd ~/Code/github.com/n8bit/$1; }
+compctl -W ~/Code/github.com/n8bit/ -/ cn8
+
 cn() { cd ~/Code/github.com/nateleavitt/$1; }
 compctl -W ~/Code/github.com/nateleavitt/ -/ cn
 
