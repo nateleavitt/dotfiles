@@ -13,15 +13,14 @@ function die() {
 
 function donemsg() {
   sleep 2
-  printf "e[93 ${GREEN}DONE!${NC}\n"
+  printf "\e[93m${GREEN}DONE!${NC}\n"
   sleep 1
 }
 
 function install_homebrew() {
   printf "installing homebrew\n"
   sleep 1
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" \
-    || die "Had problems installing Homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   donemsg
 }
 
@@ -35,7 +34,7 @@ function install_ruby() {
 function install_zsh() {
   printf "installing oh-my-zsh\n"
   sleep 1
-  git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   sleep 1
   chsh -s /bin/zsh
   donemsg
@@ -47,21 +46,20 @@ function install_node() {
   printf "installing node and yarn\n"
   sleep 1
   brew install node
-  brew install yarn
   donemsg
 }
 
 function install_vscode() {
   printf "installing vscode\n"
   sleep 1
-  brew cask install visual-studio-code
+  brew install visual-studio-code --cask
   donemsg
 }
 
 function install_docker() {
   printf "installing docker\n"
   sleep 1
-  brew cask install docker
+  brew install docker --cask
   unset DOCKER_HOST
   donemsg
 }
@@ -69,27 +67,24 @@ function install_docker() {
 function install_other() {
   printf "installing other tools\n"
   sleep 1
-  brew cask install typora
-  brew cask install google-chrome
-  brew cask install 1password
-  brew cask install slack
-  brew cask install hyper
+  brew install typora --cask
+  brew install slack --cask
   brew install ack
   brew install wget
-  brew install postgresql
-  defaults write co.zeit.hyper ApplePressAndHoldEnabled -bool false
   defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+  defaults write dev.warp.Warp-Stable "ApplePressAndHoldEnabled" -bool false
+  defaults write com.apple.dock autohide-delay -float 0; killall Dock
   donemsg
 }
 
 function create_env() {
   # setup dev env
-  printf "Creating code directories\n"
+  printf "Creating Developer directories\n"
   sleep 1
-  mkdir $HOME/Code
-  mkdir $HOME/Code/github.com
-  mkdir $HOME/Code/github.com/nateleavitt
-  mkdir $HOME/Code/github.com/loyalstream
+  mkdir $HOME/Developer
+  mkdir $HOME/Developer/github.com
+  mkdir $HOME/Developer/github.com/nateleavitt
+  mkdir $HOME/Developer/github.com/loyalstream
   donemsg
 }
 
@@ -113,8 +108,8 @@ function move_files() {
     $HOME/.zshrc \
     $HOME/.oh-my-zsh/custom/aliases.zsh \
     $HOME/.oh-my-zsh/custom/completions.zsh \
-    $HOME/.oh-my-zsh/custom/exports.zsh \
-    $HOME/Library/Application\ Support/Code/User/settings.json; do
+    $HOME/.oh-my-zsh/custom/exports.zsh; do
+    # $HOME/Library/Application\ Support/Code/User/settings.json; do
     if [[ ( -e $i ) || ( -h $i ) ]]; then
       echo "${i} has been renamed to ${i}.old"
       mv "${i}" "${i}.old" || die "Could not move ${i} to ${i}.old"
@@ -123,7 +118,7 @@ function move_files() {
   donemsg
 }
 
-function config_vim() {
+function config_files() {
   # Remove and replace .vimrc.before after files
   printf "setting up vim and configuring git\n"
   sleep 1
@@ -135,12 +130,11 @@ function config_vim() {
   ln -s $HOME/.dotfiles/vim/vimrc.before $HOME/.vimrc.before
   ln -s $HOME/.dotfiles/vim/vimrc.after $HOME/.vimrc.after
   ln -s $HOME/.dotfiles/git/gitignore_global $HOME/.gitignore_global
-  ln -s $HOME/.dotfiles/hyper/hyper.js $HOME/.hyper.js
   ln -s $HOME/.dotfiles/zsh/zshrc $HOME/.zshrc
   ln -s $HOME/.dotfiles/zsh/custom/aliases.zsh $HOME/.oh-my-zsh/custom/aliases.zsh
   ln -s $HOME/.dotfiles/zsh/custom/completions.zsh $HOME/.oh-my-zsh/custom/completions.zsh
   ln -s $HOME/.dotfiles/zsh/custom/exports.zsh $HOME/.oh-my-zsh/custom/exports.zsh
-  ln -s $HOME/.dotfiles/vscode/settings.json $HOME/Library/Application\ Support/Code/User/
+  # ln -s $HOME/.dotfiles/vscode/settings.json $HOME/Library/Application\ Support/Code/User/
   donemsg
 }
 
@@ -148,7 +142,7 @@ function config_git() {
   printf  "Configuring global git ignore\n"
   sleep 1
   git config --global core.excludesfile ~/.gitignore_global
-  git config --global credential.helper osxkeychain
+  # git config --global credential.helper osxkeychain
   git config --global pager.branch false
   donemsg
 }
@@ -174,16 +168,16 @@ printf "*******************************************************\n"
 printf "${GREEN}Welcome to nateleavitt's OSX setup script${NC}\n"
 printf "*******************************************************\n"
 sleep 3
-install_homebrew
+# install_homebrew
+move_files
+config_files
 install_ruby
 install_zsh
 install_node
 install_vscode
-install_docker
+# install_docker
 install_other
 create_env
-move_files
-config_vim
 config_git
 install_vim_plugins
 sleep 2
