@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/nate/.oh-my-zsh"
+export ZSH="/Users/nate/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -101,6 +101,7 @@ export EDITOR=/usr/bin/vim
 export EDITOR="$VISUAL"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(rbenv init -)"
 
 export NVM_DIR="$HOME/.nvm"
