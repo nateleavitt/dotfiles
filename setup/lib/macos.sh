@@ -9,10 +9,11 @@ install_homebrew() {
 }
 
 install_oh_my_zsh_macos() {
-  if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-    run_cmd_shell 'RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+  if [[ -r "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]]; then
+    log "Oh My Zsh already installed; skipping."
   else
-    verbose_log "oh-my-zsh already installed"
+    log "Installing Oh My Zsh..."
+    run_cmd_shell 'RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
   fi
 
   if [[ "${DRY_RUN}" == "true" ]]; then
