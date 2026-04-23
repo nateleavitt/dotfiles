@@ -100,9 +100,23 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR=/usr/bin/vim
 export EDITOR="$VISUAL"
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(rbenv init -)"
+# Keep developer root aligned with setup defaults.
+export DEV_ROOT="${DEV_ROOT:-$HOME/Code}"
+
+# Initialize Homebrew when installed (Apple Silicon or Intel macOS).
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+# Initialize rbenv from whichever install method is present.
+if command -v rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init -)"
+elif [ -d "$HOME/.rbenv" ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$("$HOME/.rbenv/bin/rbenv" init -)"
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

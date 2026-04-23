@@ -1,8 +1,13 @@
-cn8() { cd ~/Developer/github.com/n8bit/$1; }
-compctl -W ~/Developer/github.com/n8bit/ -/ cn8
+DEV_ROOT="${DEV_ROOT:-$HOME/Code}"
 
-cn() { cd ~/Developer/github.com/nateleavitt/$1; }
-compctl -W ~/Developer/github.com/nateleavitt/ -/ cn
+cn8() { cd "${DEV_ROOT}/github.com/n8bit/$1"; }
+compctl -W "${DEV_ROOT}/github.com/n8bit/" -/ cn8
 
-cl() { cd ~/Developer/github.com/loyalstream/$1; }
-compctl -W ~/Developer/github.com/loyalstream/ -/ cl
+cn() { cd "${DEV_ROOT}/github.com/nateleavitt/$1"; }
+compctl -W "${DEV_ROOT}/github.com/nateleavitt/" -/ cn
+
+cl() { cd "${DEV_ROOT}/github.com/loyalstream/$1"; }
+compctl -W "${DEV_ROOT}/github.com/loyalstream/" -/ cl
+
+cdev() { cd "${DEV_ROOT}/github.com/$1"; }
+compctl -W "${DEV_ROOT}/github.com/" -/ cdev
