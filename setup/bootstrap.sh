@@ -18,7 +18,9 @@ Options:
   -h, --help        Show this help
 
 Sections:
-  shell runtime editor git dotfiles extras
+  shell runtime editor git dotfiles extras python
+
+  python (pyenv) is optional: set INSTALL_PYENV=1 for a full run, or use --only python.
 EOF
 }
 
@@ -56,7 +58,7 @@ parse_args() {
 }
 
 validate_sections() {
-  local valid_sections=(shell runtime editor git dotfiles extras)
+  local valid_sections=(shell runtime editor git dotfiles extras python)
   local candidate
   local ok
 
@@ -106,6 +108,7 @@ run_plan() {
     run_section shell macos_shell
     run_section dotfiles macos_dotfiles
     run_section runtime macos_runtime
+    run_section python macos_python
     run_section editor macos_editor
     run_section git macos_git
     run_section extras macos_extras
@@ -113,6 +116,7 @@ run_plan() {
     run_section shell linux_shell
     run_section dotfiles linux_dotfiles
     run_section runtime linux_runtime
+    run_section python linux_python
     run_section editor linux_editor
     run_section git linux_git
     run_section extras linux_extras

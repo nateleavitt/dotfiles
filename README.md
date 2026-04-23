@@ -54,4 +54,10 @@ The setup entrypoint is `setup/bootstrap.sh` (the legacy `./bootstrap` and `./bo
 
 # combine flags
 ./setup/bootstrap.sh --dry-run --verbose --skip extras
+
+# optional Python (pyenv): include in a full run
+INSTALL_PYENV=1 ./setup/bootstrap.sh
+
+# or install pyenv only (macOS needs Homebrew on PATH, e.g. run shell first)
+./setup/bootstrap.sh --only python
 ```

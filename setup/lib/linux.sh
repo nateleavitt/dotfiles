@@ -58,6 +58,23 @@ install_postgres_linux() {
   run_cmd sudo apt -y install postgresql postgresql-contrib
 }
 
+install_pyenv_build_deps_linux() {
+  run_cmd sudo apt -y install make libssl-dev zlib1g-dev libbz2-dev libreadline-dev \
+    libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev \
+    libffi-dev liblzma-dev python3-openssl
+}
+
+install_pyenv_linux() {
+  install_pyenv_build_deps_linux
+  if [[ -x "$HOME/.pyenv/bin/pyenv" ]] || has_cmd pyenv; then
+    verbose_log "pyenv already installed"
+    return 0
+  fi
+  if [[ ! -d "$HOME/.pyenv" ]]; then
+    run_cmd git clone https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
+  fi
+}
+
 install_rbenv_linux() {
   if [[ ! -d "$HOME/.rbenv" ]]; then
     run_cmd git clone https://github.com/rbenv/rbenv.git "$HOME/.rbenv"
@@ -100,6 +117,10 @@ linux_runtime() {
   install_postgres_linux
   create_dev_environment
   install_rbenv_linux
+}
+
+linux_python() {
+  install_pyenv_linux
 }
 
 linux_editor() {
