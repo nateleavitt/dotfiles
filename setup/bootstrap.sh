@@ -137,10 +137,10 @@ main() {
 
   log ""
   log "*******************************************************"
-  log "${GREEN}Everything is now setup!${NC}"
+  printf "%b\n" "${GREEN}Everything is now setup!${NC}"
   log "Let me know if you have any questions:"
   log "https://github.com/nateleavitt/dotfiles"
-  log "${GREEN}Thank you!${NC}"
+  printf "%b\n" "${GREEN}Thank you!${NC}"
   if [[ "${PLATFORM}" == "linux" ]]; then
     log "Note: run 'gcloud init' to initialize gcloud"
   fi
