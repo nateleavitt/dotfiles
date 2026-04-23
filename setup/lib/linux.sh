@@ -16,10 +16,12 @@ install_oh_my_zsh_linux() {
   if ! has_cmd zsh; then
     run_cmd sudo apt -y install zsh
   fi
-  if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-    run_cmd_shell 'RUNZSH=no CHSH=no sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"'
+  # Skip unless the real entrypoint is missing (avoid re-running the installer on every --only shell).
+  if [[ -r "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]]; then
+    log "Oh My Zsh already installed; skipping."
   else
-    verbose_log "oh-my-zsh already installed"
+    log "Installing Oh My Zsh..."
+    run_cmd_shell 'RUNZSH=no CHSH=no sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"'
   fi
 
   if [[ "${DRY_RUN}" == "true" ]]; then
