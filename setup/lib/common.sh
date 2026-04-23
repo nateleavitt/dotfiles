@@ -21,7 +21,7 @@ die() {
 }
 
 log() {
-  printf "%s\n" "$*"
+  printf "%b\n" "$*"
 }
 
 verbose_log() {
