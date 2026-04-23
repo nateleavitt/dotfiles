@@ -88,6 +88,21 @@ macos_runtime() {
   install_node_macos
 }
 
+install_pyenv_macos() {
+  if ! has_cmd brew; then
+    die "Homebrew is required to install pyenv on macOS"
+  fi
+  if has_cmd pyenv; then
+    verbose_log "pyenv already installed"
+    return 0
+  fi
+  run_cmd brew install pyenv
+}
+
+macos_python() {
+  install_pyenv_macos
+}
+
 macos_editor() {
   install_vscode_macos
   install_vim_plugins

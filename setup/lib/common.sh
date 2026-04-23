@@ -200,6 +200,16 @@ section_enabled() {
     done
   fi
 
+  # Optional python (pyenv): skipped on full runs unless INSTALL_PYENV=1,
+  # or when explicitly selected with --only python.
+  if [[ "${section}" == "python" ]]; then
+    if [[ -z "${ONLY_SECTION}" || "${ONLY_SECTION}" != "python" ]]; then
+      if [[ "${INSTALL_PYENV:-}" != "1" ]]; then
+        return 1
+      fi
+    fi
+  fi
+
   return 0
 }
 
