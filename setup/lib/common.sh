@@ -115,7 +115,8 @@ append_if_missing() {
     run_cmd touch "${file}"
   fi
 
-  if rg -Fx -- "${line}" "${file}" >/dev/null 2>&1; then
+  # Use grep (not rg) so dedupe works on minimal Linux/WSL without ripgrep.
+  if grep -Fqx -- "${line}" "${file}" 2>/dev/null; then
     verbose_log "Line already present in ${file}: ${line}"
     return 0
   fi
@@ -262,6 +263,14 @@ configure_git() {
 }
 
 configure_rbenv_in_zshrc() {
-  append_if_missing "$HOME/.zshrc" 'export PATH="$HOME/.rbenv/bin:$PATH"'
-  append_if_missing "$HOME/.zshrc" 'eval "$(rbenv init -)"'
+  local zshrc="$HOME/.zshrc"
+  # Repo zshrc (and many setups) already configure rbenv with different formatting than
+  # the two legacy lines below — exact append_if_missing would never match and would
+  # duplicate on every bootstrap. Skip when rbenv is already referenced.
+  if [[ -f "$zshrc" ]] && grep -Eq '\.rbenv|rbenv init' "$zshrc" 2>/dev/null; then
+    verbose_log "rbenv already referenced in ${zshrc}; skipping PATH/init append."
+    return 0
+  fi
+  append_if_missing "$zshrc" 'export PATH="$HOME/.rbenv/bin:$PATH"'
+  append_if_missing "$zshrc" 'eval "$(rbenv init -)"'
 }
