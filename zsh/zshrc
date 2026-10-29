@@ -121,10 +121,10 @@ fi
 
 # Initialize rbenv from whichever install method is present.
 if command -v rbenv >/dev/null 2>&1; then
-  eval "$(rbenv init -)"
+  eval "$(rbenv init - zsh)"
 elif [ -d "$HOME/.rbenv" ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$("$HOME/.rbenv/bin/rbenv" init -)"
+  eval "$("$HOME/.rbenv/bin/rbenv" init - zsh)"
 fi
 
 export NVM_DIR="$HOME/.nvm"
@@ -138,6 +138,9 @@ elif [ -x "$PYENV_ROOT/bin/pyenv" ]; then
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$("$PYENV_ROOT/bin/pyenv" init -)"
 fi
+
+# User-level installs (Claude Code, pipx, etc.).
+export PATH="$HOME/.local/bin:$PATH"
 
 # Machine-specific config (PATH, aliases) that doesn't belong in the shared repo.
 [ -r "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
