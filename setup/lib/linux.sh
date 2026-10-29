@@ -9,7 +9,7 @@ install_prereqs_linux() {
     libreadline-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libpq-dev
   run_cmd sudo apt -y install apt-transport-https
   run_cmd sudo apt -y install ca-certificates
-  run_cmd sudo apt -y install wget vim ack gdebi curl gnupg
+  run_cmd sudo apt -y install wget vim ack curl gnupg
 }
 
 install_oh_my_zsh_linux() {
