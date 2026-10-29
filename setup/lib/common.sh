@@ -9,7 +9,7 @@ DRY_RUN=false
 VERBOSE=false
 ONLY_SECTION=""
 SKIP_SECTIONS=()
-DEV_ROOT="${DEV_ROOT:-$HOME/Code}"
+DEV_ROOT="${DEV_ROOT:-$HOME/code}"
 TIMESTAMP="$(date +%Y%m%d%H%M%S)"
 
 DOTFILES_ROOT_DEFAULT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -249,12 +249,7 @@ configure_dotfiles_links() {
 }
 
 create_dev_environment() {
-  ensure_dirs \
-    "${DEV_ROOT}" \
-    "${DEV_ROOT}/github.com" \
-    "${DEV_ROOT}/github.com/nateleavitt" \
-    "${DEV_ROOT}/github.com/loyalstream" \
-    "$HOME/.config/Code/User"
+  ensure_dirs "${DEV_ROOT}" "$HOME/.config/Code/User"
 }
 
 configure_git() {

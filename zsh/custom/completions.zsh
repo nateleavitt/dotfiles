@@ -1,13 +1,15 @@
-DEV_ROOT="${DEV_ROOT:-$HOME/Code}"
+DEV_ROOT="${DEV_ROOT:-$HOME/code}"
 
-cn8() { cd "${DEV_ROOT}/github.com/n8bit/$1"; }
-compctl -W "${DEV_ROOT}/github.com/n8bit/" -/ cn8
-
-cn() { cd "${DEV_ROOT}/github.com/nateleavitt/$1"; }
-compctl -W "${DEV_ROOT}/github.com/nateleavitt/" -/ cn
-
-cl() { cd "${DEV_ROOT}/github.com/loyalstream/$1"; }
-compctl -W "${DEV_ROOT}/github.com/loyalstream/" -/ cl
-
-cdev() { cd "${DEV_ROOT}/github.com/$1"; }
-compctl -W "${DEV_ROOT}/github.com/" -/ cdev
+# c <repo>: jump to ~/code/<repo> (tab-completes). Bare `c` picks a repo with fzf.
+c() {
+  if [[ -n "$1" ]]; then
+    cd "${DEV_ROOT}/$1"
+  elif command -v fzf >/dev/null 2>&1; then
+    local dir
+    dir="$(cd "${DEV_ROOT}" && print -l *(N/) | fzf --height 40% --reverse)" || return
+    cd "${DEV_ROOT}/${dir}"
+  else
+    cd "${DEV_ROOT}"
+  fi
+}
+compctl -W "${DEV_ROOT}/" -/ c

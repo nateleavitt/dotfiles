@@ -110,7 +110,7 @@ export EDITOR=vim
 export VISUAL="$EDITOR"
 
 # Keep developer root aligned with setup defaults.
-export DEV_ROOT="${DEV_ROOT:-$HOME/Code}"
+export DEV_ROOT="${DEV_ROOT:-$HOME/code}"
 
 # Initialize Homebrew when installed (Apple Silicon or Intel macOS).
 if [ -x /opt/homebrew/bin/brew ]; then
