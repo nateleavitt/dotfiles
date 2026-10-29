@@ -54,8 +54,13 @@ install_node_macos() {
   fi
 }
 
-install_vscode_macos() {
+install_editors_macos() {
   run_cmd brew install --cask visual-studio-code
+  run_cmd brew install --cask cursor
+}
+
+install_orbstack_macos() {
+  run_cmd brew install --cask orbstack
 }
 
 install_extras_macos() {
@@ -87,6 +92,7 @@ macos_shell() {
 macos_runtime() {
   install_ruby_macos
   install_node_macos
+  install_orbstack_macos
 }
 
 install_pyenv_macos() {
@@ -105,7 +111,7 @@ macos_python() {
 }
 
 macos_editor() {
-  install_vscode_macos
+  install_editors_macos
   install_vim_plugins
 }
 
