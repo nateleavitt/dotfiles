@@ -2,7 +2,7 @@
 set -Eeuo pipefail
 
 REPO_URL="https://github.com/nateleavitt/dotfiles.git"
-INSTALL_DIR="$HOME/.dotfiles"
+INSTALL_DIR="${DEV_ROOT:-$HOME/code}/dotfiles"
 
 log() {
   printf "%s\n" "$*"
