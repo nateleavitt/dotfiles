@@ -242,6 +242,7 @@ configure_dotfiles_links() {
   safe_symlink "${DOTFILES_DIR}/vim/vimrc.before" "$HOME/.vimrc.before"
   safe_symlink "${DOTFILES_DIR}/vim/vimrc.after" "$HOME/.vimrc.after"
   safe_symlink "${DOTFILES_DIR}/git/gitignore_global" "$HOME/.gitignore_global"
+  safe_symlink "${DOTFILES_DIR}/tmux/tmux.conf" "$HOME/.tmux.conf"
   safe_symlink "${DOTFILES_DIR}/zsh/zshrc" "$HOME/.zshrc"
   safe_symlink "${DOTFILES_DIR}/zsh/custom/aliases.zsh" "$HOME/.oh-my-zsh/custom/aliases.zsh"
   safe_symlink "${DOTFILES_DIR}/zsh/custom/completions.zsh" "$HOME/.oh-my-zsh/custom/completions.zsh"
